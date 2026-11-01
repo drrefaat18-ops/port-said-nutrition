@@ -6,7 +6,7 @@ export default function PageBar() {
     <header className="pagebar">
       <Link href="/" className="home">Home</Link>
       <nav aria-label="Site">
-        <Link href="/agenda">Agenda</Link>
+        <Link href="/#day-1">Agenda</Link>
         <Link href="/sponsors">Sponsors</Link>
       </nav>
     </header>

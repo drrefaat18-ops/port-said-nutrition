@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { dayPhase } from "@/lib/day";
 
-const COUNT = 7;
+const COUNT = 12;
 
-// Seven boards through one day. Scroll drives --day on the root and the `harbour:progress` event.
+// The boards run through one day, and the programme runs with them. Scroll drives --day on the root and the `harbour:progress` event.
 export default function Boards({ children }: { children: ReactNode }) {
   const [index, setIndex] = useState(0);
   const at = useRef(0);
@@ -20,7 +20,7 @@ export default function Boards({ children }: { children: ReactNode }) {
     const root = document.documentElement;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const boards = gsap.utils.toArray<HTMLElement>(".board");
-    const lenis = still ? null : new Lenis({ lerp: 0.09 });
+    const lenis = still ? null : new Lenis({ lerp: 0.09, anchors: true });
     lenis?.on("scroll", ScrollTrigger.update);
     const tick = (t: number) => lenis?.raf(t * 1000);
     gsap.ticker.add(tick);
@@ -29,12 +29,14 @@ export default function Boards({ children }: { children: ReactNode }) {
     let resizing = false;
     const progress = () => {
       if (resizing) return;
-      const span = boards[COUNT - 1].offsetTop || 1;
+      const span = boards[boards.length - 1].offsetTop || 1;
       const p = Math.min(Math.max(window.scrollY / span, 0), 1);
       root.style.setProperty("--day", p.toFixed(4));
       root.dataset.phase = dayPhase(p);
       window.dispatchEvent(new CustomEvent("harbour:progress", { detail: p }));
-      const i = Math.round(p * (COUNT - 1));
+      // a board can outgrow a short screen, so count from where the boards really are
+      const mid = window.scrollY + window.innerHeight / 2;
+      const i = Math.max(boards.findLastIndex((b) => b.offsetTop <= mid), 0);
       if (i !== at.current) { at.current = i; setIndex(i); }
     };
     const st = ScrollTrigger.create({ start: 0, end: "max", onUpdate: progress });
@@ -60,7 +62,7 @@ export default function Boards({ children }: { children: ReactNode }) {
     window.addEventListener("resize", onResize);
 
     go.current = (dir) => {
-      const next = Math.min(Math.max(at.current + dir, 0), COUNT - 1);
+      const next = Math.min(Math.max(at.current + dir, 0), boards.length - 1);
       const top = boards[next].offsetTop;
       if (lenis) lenis.scrollTo(top, { duration: 1.3 });
       else window.scrollTo({ top, behavior: "auto" });
@@ -98,7 +100,8 @@ export default function Boards({ children }: { children: ReactNode }) {
           {String(index + 1).padStart(2, "0")} / {String(COUNT).padStart(2, "0")}
         </p>
         <nav aria-label="Site">
-          <Link href="/agenda">Agenda</Link>
+          <a href="#day-1">Day 1</a>
+          <a href="#day-2">Day 2</a>
           <Link href="/sponsors">Sponsors</Link>
         </nav>
       </header>

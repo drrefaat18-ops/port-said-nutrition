@@ -1,4 +1,5 @@
 import data from "./conference.json" with { type: "json" };
+import organizers from "./team.json" with { type: "json" };
 
 export type Talk = { time: string; title: string; speakers: string[] };
 export type Item =
@@ -33,3 +34,6 @@ export type Conference = {
 };
 
 export const conference = data as Conference;
+
+// Owner-supplied, not in the agenda, so outside the content check.
+export const team: { name: string; role: string; phone: string }[] = organizers;

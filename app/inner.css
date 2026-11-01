@@ -38,38 +38,17 @@
   display: grid; gap: 0.6rem;
 }
 
-.toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-.toggle button, .tier-pick label {
+.tier-pick label {
   min-height: 2.75rem; cursor: pointer; border-radius: 0.7rem;
   border: 1px solid rgb(232 199 119 / 0.55); background: transparent; color: var(--text);
   display: grid; place-items: center; transition: background-color 0.25s, color 0.25s;
 }
-.toggle button[aria-pressed="true"], .tier-pick input:checked + label { background: #e8c777; color: #090968; }
+.tier-pick input:checked + label { background: #e8c777; color: #090968; }
 .tier-pick { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
 .tier-pick legend { padding: 0; margin-bottom: 0.5rem; }
 .tier-pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .tier-pick input:focus-visible + label { outline: 3px solid #e8c777; outline-offset: 2px; }
 .tier-pick label { font-size: 0.82rem; }
-
-/* Agenda */
-.agenda { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
-.time { font-size: var(--step--1); font-variant-numeric: tabular-nums; color: var(--gold-light); }
-.slot { padding: 0.6rem 1.25rem; display: grid; gap: 0.1rem; }
-.slot.symposium { border-left: 3px solid #e8c777; background: rgb(232 199 119 / 0.14); border-radius: 0.5rem; }
-details.glass summary { cursor: pointer; font-family: var(--font-display); font-size: var(--step-1); line-height: 1.2; min-height: 2.75rem; }
-details.glass summary span { display: block; }
-details.glass summary .num { font-family: var(--font-text); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); }
-.talks { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
-.talks li { display: grid; gap: 0.1rem; overflow-wrap: anywhere; }
-.who { font-weight: 600; }
-.go { display: inline-flex; align-items: center; min-height: 2.75rem; }
-
-/* Sessions */
-.visual { width: 7.5rem; height: 7.5rem; color: #e8c777; }
-.visual * { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.4s var(--ease-out) forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@media (prefers-reduced-motion: reduce) { .visual * { animation: none; stroke-dashoffset: 0; } }
-.pager { display: flex; justify-content: space-between; gap: var(--space-2); }
 
 /* Sponsors */
 .stand-view { position: relative; height: 12.5rem; border-radius: 0.7rem; overflow: hidden; }
@@ -90,9 +69,3 @@ details.glass summary .num { font-family: var(--font-text); font-size: var(--ste
 .compare tbody th { font-weight: 500; color: var(--gold-light); position: sticky; left: 0; background: rgb(12 12 60); }
 .includes { margin: 0; padding-left: 1.1rem; }
 .mailto { justify-self: start; min-height: 2.75rem; display: inline-flex; align-items: center; padding: 0 1.25rem; border-radius: 0.7rem; background: #e8c777; color: #090968 !important; text-decoration: none; font-weight: 600; }
-.org { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
-.msquare { width: 9.5rem; height: auto; background: #fff; padding: 0.4rem 0.6rem; border-radius: 0.25rem; }
-.syndicate { width: 3.5rem; height: 3.5rem; }
-.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; font-size: 0.95rem; }
-.contact a { min-height: 2.75rem; display: inline-flex; align-items: center; overflow-wrap: anywhere; }
-.contact > :last-child { grid-column: 1 / -1; }

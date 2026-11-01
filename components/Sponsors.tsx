@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { conference } from "@/content";
 import { mailHref } from "@/lib/mail";
+import Organizers from "./Organizers";
 import Stand from "./Stand";
 
-const { tiers, alaCarte, registration, rooms, email, phones } = conference;
+const { tiers, alaCarte, registration, rooms, email } = conference;
 
 const ROWS: [string, (t: (typeof tiers)[number]) => string | undefined][] = [
   ["Price", (t) => t.price],
@@ -95,16 +96,7 @@ export default function Sponsors() {
 
       <section className="glass" aria-labelledby="org">
         <h2 id="org">Organized by</h2>
-        <div className="org">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="msquare" src="/logos/m-square.svg" alt="M Square" width={220} height={66} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="syndicate" src="/logos/syndicate.png" alt="Port Said Medical Syndicate" width={88} height={88} />
-        </div>
-        <p className="contact">
-          {phones.split(" - ").map((p) => <a key={p} href={`tel:${p}`}>{p}</a>)}
-          <a href={mailHref(email)}>{email}</a>
-        </p>
+        <Organizers />
       </section>
     </>
   );

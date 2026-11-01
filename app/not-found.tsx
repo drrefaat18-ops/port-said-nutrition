@@ -10,7 +10,7 @@ export default function NotFound() {
         <div className="column">
           <h1>This page does not exist</h1>
           <p><Link href="/">Home</Link></p>
-          <p><Link href="/agenda">Agenda</Link></p>
+          <p><Link href="/#day-1">Agenda</Link></p>
         </div>
       </main>
     </>
