@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import assert from "node:assert/strict";
 
-const SOURCE = "D:/vault/academy-brain/Brain/_sources/src-Port_Said_Nutrition_Conference-pdf.md";
+const SOURCE = fileURLToPath(new URL("../docs/agenda-source.md", import.meta.url));
 const norm = (s) => s.replace(/\s+/g, "").toLowerCase();
 
 export function missing(values, source) {

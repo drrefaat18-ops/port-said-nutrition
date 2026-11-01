@@ -1,5 +1,13 @@
 # Port Said Nutrition sponsor site: handoff
 
+## Start here (Khaled, 2026-11-02)
+- Setup: `npm install`, `npm run dev`. Before a commit: `npm test`, `npm run check`, `npm run build` (static export to `out/`).
+- Current site: `/` holds the day scene, agenda and organizers; `/sponsors` holds the packages, their contact buttons and the 3D stand. `/agenda` and `/sessions/[n]` were removed; older sections below that mention them are history.
+- Content lives in `content/*.json`. `npm run check` tests every value against `docs/agenda-source.md`, the machine copy of the agenda PDF. Keep the rule: not in the agenda, not on the site.
+- Spec: `docs/DESIGN-SPEC.md`, partly superseded as its first line says. Paths starting `D:\` below are on Dr Refaat's PC and are not in this repo.
+- Live: https://port-said-nutrition.vercel.app, on Dr Refaat's Vercel account, deployed by CLI and not linked to this repo. A push does not change it; ask him for deploy access.
+- Open: test the lighthouse on a real iPhone.
+
 ## Current state (2026-11-01, evening): Gold Lighthouse built, waiting for the owner's look approval
 - Scene: `lib/harbour.ts` draws one gold PBR lighthouse on the quay of four owner-made Port Said photographs (`public/sky/*.webp`, dawn, day, sunset, night). The camera is fixed by the photographs and only pushes in. Quay, horizon and tower spot are measured constants at the top of the file.
 - Conference identity: the procession is a gold inlay on the quay wall (`lib/frieze.ts`), and the roundel sits beside the title. M Square: frosted glass cards in M Square navy and gold, gold, and its logo only under "Organized by".
