@@ -56,8 +56,14 @@
 .plate h3 { font-size: var(--step--1); font-family: var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: var(--gold-light); margin-top: var(--space-1); }
 .plate .big { font-size: var(--step-3); display: grid; gap: 0.1em; }
 .plate .theme { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: var(--gold-light); }
-.roundel { width: 3rem; height: 3rem; border-radius: 50%; background: #fff; }
-.lead { display: flex; gap: 0.75rem; align-items: center; }
+/* The conference logo in the open sky, between the tower and the domes */
+#b1 { position: relative; }
+.roundel {
+  position: absolute; left: 66%; top: 26svh; translate: -50% -50%;
+  width: clamp(6.5rem, min(31vw, 15svh), 11rem); height: auto; aspect-ratio: 1; border-radius: 50%; background: #fff;
+  border: 2px solid #e8c777; outline: 1px solid rgb(232 199 119 / 0.5); outline-offset: 5px;
+  box-shadow: 0 0 44px 4px rgb(232 199 119 / 0.45), 0 14px 34px -8px rgb(3 5 30 / 0.7);
+}
 
 .rows { list-style: none; padding: 0; display: grid; }
 .rows { font-size: 0.92rem; }
@@ -106,14 +112,20 @@
 .plate.session { max-width: 46rem; display: grid; gap: 0.5rem; }
 .plate.session h2 { font-size: clamp(1.2rem, 1.05rem + 0.8vw, 1.7rem); line-height: 1.2; }
 .eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); }
-.program { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
-.program li { display: grid; gap: 0.05rem; min-width: 0; overflow-wrap: anywhere; }
-.talk { font-size: 0.95rem; line-height: 1.3; }
-.byline { font-size: 0.8rem; color: var(--gold-light); font-variant-numeric: tabular-nums; }
-.byline b { font-weight: 600; color: var(--text); white-space: nowrap; }
-.breaks { list-style: none; padding: 0.4rem 0 0; margin: 0; display: grid; gap: 0.15rem; border-top: 1px solid rgb(232 199 119 / 0.35); font-size: 0.8rem; }
-.breaks li { display: flex; justify-content: space-between; gap: var(--space-2); }
-.breaks span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--gold-light); }
+.program { list-style: none; padding: 0; margin: 0; display: grid; }
+/* Three things to find at a glance: when in its own column, what, then who */
+.program li {
+  display: grid; grid-template-columns: 4.4rem minmax(0, 1fr); column-gap: 0.85rem; align-items: start;
+  padding: 0.45rem 0; border-top: 1px solid rgb(232 199 119 / 0.28); overflow-wrap: anywhere;
+}
+.when { grid-row: span 2; display: grid; font-size: 0.74rem; line-height: 1.25; font-variant-numeric: tabular-nums; color: var(--text); opacity: 0.8; }
+.when b { font-size: 0.95rem; font-weight: 600; color: var(--gold-light); }
+.talk { font-size: 0.95rem; line-height: 1.28; font-weight: 500; }
+.speaker { font-size: 0.8rem; line-height: 1.3; color: var(--gold-light); }
+.breaks li { align-items: center; padding: 0.3rem 0; }
+.breaks .when { grid-row: auto; }
+.breaks .when b { font-size: 0.82rem; }
+.breaks .talk { font-size: 0.82rem; font-weight: 400; }
 
 /* Previous / next */
 .steps { position: fixed; right: var(--gutter); top: 4.25rem; z-index: 3; display: flex; gap: 0.5rem; }
@@ -129,7 +141,10 @@
 
 @media (min-width: 48rem) {
   .board { padding-inline: 8vw; }
+  .roundel { left: 52%; top: 24svh; }
   .laureates { grid-auto-flow: column; gap: 2.5rem; }
   .laureates .laureate { white-space: nowrap; font-size: 2.25rem; }
-  .program { grid-template-columns: 1fr 1fr; gap: 0.7rem 1.75rem; }
+  .program li { grid-template-columns: 4.6rem minmax(0, 1fr) 12rem; column-gap: 1.25rem; }
+  .when { grid-row: auto; }
+  .speaker { text-align: right; font-size: 0.86rem; }
 }
