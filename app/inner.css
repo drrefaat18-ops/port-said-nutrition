@@ -67,8 +67,9 @@
 .compare th, .compare td { padding: 0.45rem 0.6rem; text-align: left; border-bottom: 1px solid rgb(232 199 119 / 0.3); }
 .compare thead th { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; }
 .compare tbody th { font-weight: 500; color: var(--gold-light); position: sticky; left: 0; background: rgb(12 12 60); }
-.reach { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.mailto.ghost { background: transparent; color: #fbf6ea !important; border: 1px solid #e8c777; font-weight: 500; }
+.reach { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; max-width: 26rem; }
+.reach .mailto { justify-self: stretch; justify-content: center; padding: 0 0.5rem; }
+.mailto.ghost { background: transparent; color: #fbf6ea !important; border: 1px solid #e8c777; }
 .compare td a { display: inline-flex; align-items: center; min-height: 2.75rem; color: #e8c777; font-weight: 600; }
 .includes { margin: 0; padding-left: 1.1rem; }
 .mailto { justify-self: start; min-height: 2.75rem; display: inline-flex; align-items: center; padding: 0 1.25rem; border-radius: 0.7rem; background: #e8c777; color: #090968 !important; text-decoration: none; font-weight: 600; }

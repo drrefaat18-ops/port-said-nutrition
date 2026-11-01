@@ -50,8 +50,8 @@ export default function Sponsors() {
           })}
         </ul>
         <div className="reach">
-          <a className="mailto wa" href={whatsappHref(omar, tier.name)} target="_blank" rel="noreferrer">WhatsApp about {tier.name}</a>
-          <a className="mailto ghost" href={mailHref(email, tier.name)}>Email about {tier.name}</a>
+          <a className="mailto wa" href={whatsappHref(omar, tier.name)} target="_blank" rel="noreferrer" aria-label={`WhatsApp about ${tier.name}`}>WhatsApp</a>
+          <a className="mailto ghost" href={mailHref(email, tier.name)} aria-label={`Email about ${tier.name}`}>Email</a>
         </div>
       </section>
 
