@@ -18,7 +18,7 @@ export default function B5() {
           ))}
         </ul>
         <h3>Exhibition Area</h3>
-        <ul className="rows">
+        <ul className="rows cells">
           {conference.tiers.map((t) => (
             <li key={t.name}>
               <span>{t.name}</span>

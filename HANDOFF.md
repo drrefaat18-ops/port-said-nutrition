@@ -1,6 +1,13 @@
-# Port Said Nutrition sponsor site: handoff (paused 2026-11-01)
+# Port Said Nutrition sponsor site: handoff
 
-Owner stopped the build: the look is "childish and naive, like a kids' game, not professional". Do not continue the build or polish this look. Resume when the usage limit lifts, starting with a new visual direction (see "Next").
+## Current state (2026-11-01, evening): Gold Lighthouse built, waiting for the owner's look approval
+- Scene: `lib/harbour.ts` draws one gold PBR lighthouse on the quay of four owner-made Port Said photographs (`public/sky/*.webp`, dawn, day, sunset, night). The camera is fixed by the photographs and only pushes in. Quay, horizon and tower spot are measured constants at the top of the file.
+- Conference identity: the procession is a gold inlay on the quay wall (`lib/frieze.ts`), and the roundel sits beside the title. M Square: frosted glass cards in M Square navy and gold, gold, and its logo only under "Organized by".
+- Text sits on frosted glass cards in M Square navy and gold (`.plate` in `app/home.css`), spread wide and short so the tower stays in view. This replaces "text directly on the sky" in the redesign plan below: owner's ruling, readability first.
+- Fonts: Bodoni Moda + Hanken Grotesk. Spec sections 7, 9, 11 and the plan still describe the old direction and need updating.
+- Next, after approval: known bugs below, then Tasks 4, 5, 6, 8, 9. Not committed yet.
+
+Owner stopped the build: the look is "childish and naive, like a kids' game, not professional". Do not continue the build or polish this look. Resume when the usage limit renews, starting from "Redesign plan" below.
 
 ## Where things stand
 Plan: `D:\vault\academy-brain\docs\superpowers\plans\2026-11-01-nutrition-sponsor-site.md`. Spec: `D:\vault\academy-brain\deliverables\nutrition-sponsor-site\DESIGN-SPEC.md`. Routing: `.claude/harness/routing/2026-11-01-nutrition-sponsor-site-build.{card,plan,outcome}.json` in academy-brain (outcome has a placeholder for UI Finish-Gate Reviewer).
@@ -25,11 +32,30 @@ Plan: `D:\vault\academy-brain\docs\superpowers\plans\2026-11-01-nutrition-sponso
 - Cartoon lighthouse bands and toy ships; no atmosphere, texture, or real lighting.
 - Rounded white plates with big serif headings stacked on a toy scene.
 
-## Next (when the limit lifts)
-1. Ask the owner for one or two references of "professional" he likes (pharma/conference sites, film-title style, editorial).
-2. Reconsider the scene: restrained palette (M Square navy and gold dominant), photographic or painterly-realistic light, fewer and subtler elements, figures as quiet silhouettes or dropped from 3D and shown as refined line art, real typography hierarchy. Keep all content/data work.
-3. Keep: `content/`, `scripts/check-content*`, `lib/day.ts`, `lib/capable.ts`, boards structure, scroll/rotation logic.
-4. Fix known bugs below, then continue Tasks 4, 5, 6, 8, 9. Gates still apply: owner approves the look (screenshots) before more building, the reviewer spawn, push and deploy, going live.
+## Redesign plan: "The Gold Lighthouse" (agreed direction, 2026-11-01)
+Saved by the owner's request; he resumes when the usage limit renews. This replaces the earlier "Next" list. The owner likes the lighthouse and the day and night cycle. His complaint is the childish execution, not the idea. His references for an acceptable finish are his own sites: https://hue-pharmacy-welcome-day.vercel.app (source `D:\PROJJJ\wlcm day hue`) and https://techno-square-live.vercel.app (`D:\vault\techno-square-live`).
+
+What makes those two work: one hero object with a real material, a photographic or deeply atmospheric backdrop, typefaces with character, two dominant colours.
+
+Direction:
+- Hero: one lighthouse in gold metal with real reflections (PBR material, environment map), the same logic as the Horus eye. It holds its place through the whole site; the camera moves around it slowly.
+- Day cycle: sky, light on the gold and water change with scroll: dawn, day, sunset, night. The water reflects the time of day.
+- Night: the beam sweeps the four tiers. This is the commercial close.
+- Text sits directly on the sky with no white plates, in an editorial typeface. Replace Fraunces and Figtree.
+- Colour: the sky varies naturally; the fixed colours are M Square gold and navy. Conference green and teal shrink to small details in the agenda.
+- Remove: foreground leaves, flat cut-out family, toy ships, white plates. The baby-to-elder procession leaves the 3D scene; the theme line carries that idea.
+- Look finish: ACES tone mapping, fog, bloom, real water. No flat low-poly look.
+
+Open decision, the first thing to ask on resume: sky as images, like Horus (four plates, dawn, day, sunset, night, for example from Flow; Claude's recommendation) or sky drawn by code (nothing needed from the owner, less real clouds).
+
+Steps on resume:
+1. Get the sky decision.
+2. Rebuild `lib/harbour.ts` as the one hero scene and show the owner screenshots of the four times of day. Stop until he approves the look.
+3. Update `DESIGN-SPEC.md` and the plan to match: sections 7, 9 and 11 still describe the procession and the old fonts.
+4. Keep: `content/`, `scripts/check-content*`, `lib/day.ts`, `lib/capable.ts`, boards structure, scroll/rotation logic.
+5. Fix known bugs below, then continue Tasks 4, 5, 6, 8, 9. Gates still apply: the reviewer spawn, push and deploy, going live.
+
+Model: the plan's Sonnet choice produced the rejected look. Claude's recommendation is Opus 5.5 for the scene and visual work, and it is the owner's call. Routing for the concept: `.claude/harness/routing/2026-11-01-nutrition-site-redesign.*` in academy-brain; building needs its own card.
 
 ## Known bugs (Task 3)
 - Rotation: portrait to landscape to portrait does not keep the board. Test: go to board 5 with the Next button, rotate, rotate back. Result 05 then 01. `components/Boards.tsx` resize handler (freezes progress during resize, then `lenis.scrollTo(top,{immediate,force})` + `window.scrollTo`) is not restoring. Likely Lenis state or section heights changing in landscape (plates taller than 375px).

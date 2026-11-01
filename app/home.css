@@ -1,13 +1,21 @@
-/* The stage: poster and 3D fixed behind seven scrolling boards */
-.stage { position: fixed; inset: 0; z-index: 0; background: var(--sky-top); overflow: hidden; }
+/* The stage: sky photographs and the 3D lighthouse fixed behind seven scrolling boards */
+.stage { position: fixed; inset: 0; z-index: 0; background: #070b24; overflow: hidden; }
 .poster, .harbour { position: absolute; inset: 0; width: 100%; height: 100%; }
-.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.poster-night { opacity: clamp(0, calc((var(--day, 0) - 0.55) * 5), 1); }
+.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 64.5%; }
+.poster-day { opacity: clamp(0, calc(var(--day, 0) / 0.35), 1); }
+.poster-sunset { opacity: clamp(0, calc((var(--day, 0) - 0.35) / 0.32), 1); }
+.poster-night { opacity: clamp(0, calc((var(--day, 0) - 0.67) / 0.21), 1); }
 .harbour { opacity: 0; transition: opacity 0.9s var(--ease-out); display: block; }
 .harbour.live { opacity: 1; }
+/* The sea is dark in all four photographs; this deepens it under the text */
+.stage::after {
+  content: ""; position: absolute; inset: 66% 0 0 0; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgb(5 8 32 / 0.7) 55%);
+}
 
 /* Top bar: board counter and the two other pages */
 .bar {
+  --text: #fbf6ea; --gold-light: #e8c777;
   position: fixed; inset: 0 0 auto 0; z-index: 3;
   display: flex; justify-content: space-between; align-items: center;
   padding: var(--space-2) var(--gutter);
@@ -15,74 +23,81 @@
 }
 .bar > * { pointer-events: auto; }
 .counter {
-  font-family: var(--font-display); font-size: var(--step-1); font-variant-numeric: tabular-nums;
-  background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink);
-  padding: 0.25rem 0.8rem; border-radius: 999px;
-  transition: background-color 0.6s, color 0.6s;
+  font-size: var(--step--1); letter-spacing: 0.18em; font-variant-numeric: tabular-nums;
+  color: var(--text); text-shadow: 0 1px 12px rgb(5 8 32 / 0.6);
 }
-.bar nav { display: flex; gap: 0.5rem; }
+.bar nav { display: flex; gap: 1.25rem; }
 .bar nav a {
-  text-decoration: none; font-weight: 600; font-size: var(--step--1);
-  background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink);
-  padding: 0.5rem 0.9rem; border-radius: 999px; min-height: 2.75rem; display: inline-flex; align-items: center;
-  transition: background-color 0.6s, color 0.6s;
+  text-decoration: none; font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text); text-shadow: 0 1px 12px rgb(5 8 32 / 0.6);
+  min-height: 2.75rem; display: inline-flex; align-items: center;
 }
-.bar nav a:hover { background: var(--ms-gold); color: var(--ms-navy); }
+.bar nav a:hover { color: var(--gold-light); }
 
 /* Boards: one screen each; content sits low so the harbour stays in view above it */
 .boards { position: relative; z-index: 2; }
 .board {
   min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 5rem var(--gutter) 5.5rem;
+  padding: 5rem var(--gutter) 1rem;
 }
-.board.top { justify-content: flex-start; padding-top: 4.5rem; }
 .plate {
-  max-width: 34rem; width: 100%;
-  background: color-mix(in srgb, var(--paper) 90%, transparent); color: var(--ink);
-  padding: var(--space-3); border-radius: 1.25rem;
-  display: grid; gap: var(--space-2); align-content: start;
-  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.4), 0 2px 6px rgb(0 0 0 / 0.12);
-  transition: background-color 0.6s, color 0.6s;
+  --text: #fbf6ea; --gold-light: #e8c777;
+  max-width: 34rem; width: 100%; padding: 1rem 1.25rem;
+  color: var(--text);
+  /* frosted glass in M Square navy and gold: the sky shows through and the text stays readable over the tower */
+  background: linear-gradient(145deg, rgb(232 199 119 / 0.3), rgb(170 133 49 / 0.1) 42%, rgb(170 133 49 / 0.2)), rgb(9 9 56 / 0.5);
+  -webkit-backdrop-filter: blur(20px) saturate(165%); backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid rgb(232 199 119 / 0.55); border-radius: 1.1rem;
+  box-shadow: inset 0 1px 0 rgb(255 236 190 / 0.45), 0 18px 40px -16px rgb(3 5 30 / 0.65), 0 0 28px -10px rgb(170 133 49 / 0.55);
 }
-.plate h1 { font-size: var(--step-3); }
-.plate h2 { font-size: var(--step-2); }
-.plate h3 { font-size: var(--step-1); margin-top: var(--space-1); }
-.plate .big { font-size: var(--step-4); display: grid; gap: 0.1em; }
-.plate .theme { font-family: var(--font-display); font-size: var(--step-1); font-style: italic; }
-.roundel { width: 7rem; height: 7rem; border-radius: 50%; background: #fff; }
+.plate h1 { font-size: clamp(1.7rem, 1.3rem + 2vw, 3.2rem); font-weight: 500; }
+.plate h2 { font-size: var(--step-2); font-weight: 500; }
+.plate h3 { font-size: var(--step--1); font-family: var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: var(--gold-light); margin-top: var(--space-1); }
+.plate .big { font-size: var(--step-3); display: grid; gap: 0.1em; }
+.plate .theme { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: var(--gold-light); }
+.roundel { width: 3rem; height: 3rem; border-radius: 50%; background: #fff; }
+.lead { display: flex; gap: 0.75rem; align-items: center; }
 
 .glance { list-style: none; padding: 0; display: grid; gap: 0.35rem; font-size: var(--step-1); }
 .names { list-style: none; padding: 0; font-size: var(--step-1); font-weight: 600; display: grid; gap: 0.25rem; }
 .rows { list-style: none; padding: 0; display: grid; }
+.rows { font-size: 0.92rem; }
 .rows li, .rows a {
-  display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.7rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.3rem 0;
+  border-bottom: 1px solid rgb(232 199 119 / 0.35);
 }
 .rows li:last-child { border-bottom: 0; }
+.rows span:first-child { white-space: nowrap; }
 .rows span:last-child { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-.tiers li { padding: 0; }
-.tiers a { width: 100%; text-decoration: none; font-family: var(--font-display); font-size: var(--step-1); min-height: 3.25rem; align-items: center; }
-.tiers a:hover span:first-child { text-decoration: underline; text-decoration-color: var(--ms-gold); text-decoration-thickness: 2px; }
+/* Cards spread across the screen, not up it, so the tower and the quay stay in view */
+.rows.cells, .rows.tiers { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+.rows.cells li { flex-direction: column; gap: 0; padding: 0; border: 0; }
+.rows.cells span:last-child { text-align: left; }
+.rows.tiers a { flex-direction: column; gap: 0; align-items: flex-start; padding: 0.3rem 0; border: 0; }
+.rows.tiers span { white-space: nowrap; }
+.rows.tiers span:last-child { text-align: left; font-family: var(--font-text); font-size: 0.82rem; }
+.tiers li { padding: 0; border: 0; }
+.tiers a { width: 100%; text-decoration: none; font-family: var(--font-display); font-size: 1.02rem; min-height: 3.25rem; }
+.tiers a:hover span:first-child { color: var(--gold-light); }
 
-.org { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; }
-.msquare { width: 13.75rem; height: auto; background: #fff; padding: 0.6rem 0.9rem; border-radius: 0.75rem; }
-.syndicate { width: 5.5rem; height: 5.5rem; }
-.contact { display: grid; gap: 0.25rem; font-weight: 600; }
+.org { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); flex-wrap: nowrap; }
+.msquare { width: 9.5rem; height: auto; background: #fff; padding: 0.4rem 0.6rem; border-radius: 0.25rem; }
+.syndicate { width: 3.5rem; height: 3.5rem; }
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; font-size: 0.95rem; }
+.contact > :nth-last-child(-n+1) { grid-column: 1 / -1; }
 .contact a { min-height: 2.75rem; display: inline-flex; align-items: center; }
 
 /* Previous / next */
-.steps { position: fixed; right: var(--gutter); bottom: var(--space-3); z-index: 3; display: grid; gap: 0.5rem; }
+.steps { position: fixed; right: var(--gutter); top: 4.25rem; z-index: 3; display: flex; gap: 0.5rem; }
 .steps button {
-  width: 3rem; height: 3rem; border-radius: 50%; border: 0; cursor: pointer;
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; cursor: pointer;
   display: grid; place-items: center;
-  background: var(--ms-gold); color: var(--ms-navy);
-  box-shadow: 0 8px 18px -8px rgb(0 0 0 / 0.5);
-  transition: transform 0.25s var(--ease-out), opacity 0.25s;
+  background: transparent; color: #fbf6ea; border: 1px solid rgb(232 199 119 / 0.7);
+  transition: border-color 0.25s, opacity 0.25s;
 }
-.steps button:hover:not(:disabled) { transform: scale(1.08); }
+.steps button:hover:not(:disabled) { border-color: #fbf6ea; }
 .steps button:disabled { opacity: 0.35; cursor: default; }
 
 @media (min-width: 48rem) {
   .board { padding-inline: 8vw; }
-  .plate { padding: var(--space-4); }
 }
