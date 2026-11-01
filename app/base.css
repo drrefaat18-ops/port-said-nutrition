@@ -52,13 +52,16 @@ button { font: inherit; color: inherit; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
+/* Quick taps on the step buttons must not zoom the page on iPhone */
+html { touch-action: manipulation; }
+
 /* Organized by: home and sponsors */
-.org { display: grid; gap: 0.75rem; }
+.org { display: grid; gap: 0.75rem; margin-top: 0.7rem; min-width: 0; }
 .org-logos {
   display: flex; align-items: center; justify-content: center; gap: 1.25rem;
   padding: 0.6rem 1rem; border-radius: 0.7rem; background: #fff;
 }
-.org-logos img { height: 3.25rem; width: auto; min-width: 0; object-fit: contain; }
+.org-logos img { height: 3.25rem; width: auto; max-width: 62%; min-width: 0; object-fit: contain; }
 .org-logos i { width: 1px; align-self: stretch; background: #c9a24c; }
 .people { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.1rem; }
 .people li { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; padding: 0.35rem 0; border-bottom: 1px solid rgb(232 199 119 / 0.3); }
