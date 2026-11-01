@@ -1,0 +1,88 @@
+/* The stage: poster and 3D fixed behind seven scrolling boards */
+.stage { position: fixed; inset: 0; z-index: 0; background: var(--sky-top); overflow: hidden; }
+.poster, .harbour { position: absolute; inset: 0; width: 100%; height: 100%; }
+.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.poster-night { opacity: clamp(0, calc((var(--day, 0) - 0.55) * 5), 1); }
+.harbour { opacity: 0; transition: opacity 0.9s var(--ease-out); display: block; }
+.harbour.live { opacity: 1; }
+
+/* Top bar: board counter and the two other pages */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 3;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--space-2) var(--gutter);
+  pointer-events: none;
+}
+.bar > * { pointer-events: auto; }
+.counter {
+  font-family: var(--font-display); font-size: var(--step-1); font-variant-numeric: tabular-nums;
+  background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink);
+  padding: 0.25rem 0.8rem; border-radius: 999px;
+  transition: background-color 0.6s, color 0.6s;
+}
+.bar nav { display: flex; gap: 0.5rem; }
+.bar nav a {
+  text-decoration: none; font-weight: 600; font-size: var(--step--1);
+  background: color-mix(in srgb, var(--paper) 88%, transparent); color: var(--ink);
+  padding: 0.5rem 0.9rem; border-radius: 999px; min-height: 2.75rem; display: inline-flex; align-items: center;
+  transition: background-color 0.6s, color 0.6s;
+}
+.bar nav a:hover { background: var(--ms-gold); color: var(--ms-navy); }
+
+/* Boards: one screen each; content sits low so the harbour stays in view above it */
+.boards { position: relative; z-index: 2; }
+.board {
+  min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 5rem var(--gutter) 5.5rem;
+}
+.board.top { justify-content: flex-start; padding-top: 4.5rem; }
+.plate {
+  max-width: 34rem; width: 100%;
+  background: color-mix(in srgb, var(--paper) 90%, transparent); color: var(--ink);
+  padding: var(--space-3); border-radius: 1.25rem;
+  display: grid; gap: var(--space-2); align-content: start;
+  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.4), 0 2px 6px rgb(0 0 0 / 0.12);
+  transition: background-color 0.6s, color 0.6s;
+}
+.plate h1 { font-size: var(--step-3); }
+.plate h2 { font-size: var(--step-2); }
+.plate h3 { font-size: var(--step-1); margin-top: var(--space-1); }
+.plate .big { font-size: var(--step-4); display: grid; gap: 0.1em; }
+.plate .theme { font-family: var(--font-display); font-size: var(--step-1); font-style: italic; }
+.roundel { width: 7rem; height: 7rem; border-radius: 50%; background: #fff; }
+
+.glance { list-style: none; padding: 0; display: grid; gap: 0.35rem; font-size: var(--step-1); }
+.names { list-style: none; padding: 0; font-size: var(--step-1); font-weight: 600; display: grid; gap: 0.25rem; }
+.rows { list-style: none; padding: 0; display: grid; }
+.rows li, .rows a {
+  display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+}
+.rows li:last-child { border-bottom: 0; }
+.rows span:last-child { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.tiers li { padding: 0; }
+.tiers a { width: 100%; text-decoration: none; font-family: var(--font-display); font-size: var(--step-1); min-height: 3.25rem; align-items: center; }
+.tiers a:hover span:first-child { text-decoration: underline; text-decoration-color: var(--ms-gold); text-decoration-thickness: 2px; }
+
+.org { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; }
+.msquare { width: 13.75rem; height: auto; background: #fff; padding: 0.6rem 0.9rem; border-radius: 0.75rem; }
+.syndicate { width: 5.5rem; height: 5.5rem; }
+.contact { display: grid; gap: 0.25rem; font-weight: 600; }
+.contact a { min-height: 2.75rem; display: inline-flex; align-items: center; }
+
+/* Previous / next */
+.steps { position: fixed; right: var(--gutter); bottom: var(--space-3); z-index: 3; display: grid; gap: 0.5rem; }
+.steps button {
+  width: 3rem; height: 3rem; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center;
+  background: var(--ms-gold); color: var(--ms-navy);
+  box-shadow: 0 8px 18px -8px rgb(0 0 0 / 0.5);
+  transition: transform 0.25s var(--ease-out), opacity 0.25s;
+}
+.steps button:hover:not(:disabled) { transform: scale(1.08); }
+.steps button:disabled { opacity: 0.35; cursor: default; }
+
+@media (min-width: 48rem) {
+  .board { padding-inline: 8vw; }
+  .plate { padding: var(--space-4); }
+}

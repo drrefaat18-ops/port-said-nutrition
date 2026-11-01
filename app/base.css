@@ -1,0 +1,50 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--ms-gold) transparent;
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  background: var(--sky-top);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  overflow-x: hidden;
+  caret-color: var(--ms-gold);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p, ul, dl { margin: 0; }
+img, svg { display: block; max-width: 100%; }
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--ms-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ms-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button { font: inherit; color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

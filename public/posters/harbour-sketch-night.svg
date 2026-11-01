@@ -1,0 +1,184 @@
+<svg class="night" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="Port Said harbour: lighthouse, domed building and a procession from baby to elder">
+  <style>
+    svg {
+      --s-top:#a9c9e6; --s-bot:#f6d3bd; --s-sun:#fff1d4; --sun-op:1; --moon-op:0; --stars:0; --beam:0;
+      --w-top:#d9b9b0; --w-bot:#5f93ad; --stone:#f1e3d6; --stone-dk:#cdb9a6; --dome:#4aa7a3; --win:#b79f90;
+      --t-light:#f7efe6; --t-dark:#24344d; --lamp:#fff3c4; --hill-far:#8dbcae; --hill-near:#5aa464;
+      --shore:#3f8a52; --leaf:#7cc243; --leaf2:#1a9aa0; --wood:#8a5a3c; --h1:#e9c8a0; --h2:#cfe0d8;
+      --hull:#33415c; --c1:#c9694f; --c2:#5b8fb0; --c3:#d9b25e; --c4:#6f9a6f; --ripple:#ffffff; --birds:#2d4a63;
+      --f1:#3f9e49; --f2:#5fb046; --f3:#1a9aa0; --f4:#1e8da6; --f5:#1b5fa8; --f6:#0d3c78;
+    }
+    svg.night {
+      --s-top:#04043a; --s-bot:#14147e; --s-sun:#f4ecd2; --sun-op:0; --moon-op:1; --stars:1; --beam:.6;
+      --w-top:#14147e; --w-bot:#03032a; --stone:#5b5f92; --stone-dk:#3d4075; --dome:#8e95c4; --win:#f2c66a;
+      --t-light:#aeb3dc; --t-dark:#1b1d5a; --lamp:#ffe08a; --hill-far:#1c2a6b; --hill-near:#142260;
+      --shore:#10205a; --leaf:#2f7f6b; --leaf2:#1f6f8f; --wood:#4a3a5a; --h1:#6d6f9e; --h2:#555a8e;
+      --hull:#0d1040; --c1:#6a3f66; --c2:#2b4f8a; --c3:#8a6a2e; --c4:#2f6b6a; --ripple:#aa8531; --birds:#2d4a63;
+      --f1:#6fd08a; --f2:#8fdc8f; --f3:#4fd0d0; --f4:#4bb3e0; --f5:#6f9fff; --f6:#9aa8ff;
+    }
+    .s-top { stop-color: var(--s-top); } .s-bot { stop-color: var(--s-bot); }
+    .w-top { stop-color: var(--w-top); } .w-bot { stop-color: var(--w-bot); }
+    .stone { fill: var(--stone); } .stone-dk { fill: var(--stone-dk); } .dome { fill: var(--dome); }
+    .win { fill: var(--win); } .wood { fill: var(--wood); } .h1 { fill: var(--h1); } .h2 { fill: var(--h2); }
+    .t-light { fill: var(--t-light); } .t-dark { fill: var(--t-dark); } .lamp { fill: var(--lamp); }
+    .hull { fill: var(--hull); } .c1 { fill: var(--c1); } .c2 { fill: var(--c2); } .c3 { fill: var(--c3); } .c4 { fill: var(--c4); }
+    .f1 { color: var(--f1); } .f2 { color: var(--f2); } .f3 { color: var(--f3); }
+    .f4 { color: var(--f4); } .f5 { color: var(--f5); } .f6 { color: var(--f6); }
+    .limb { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" class="s-top"/><stop offset="1" class="s-bot"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" class="w-top"/><stop offset="1" class="w-bot"/>
+    </linearGradient>
+    <linearGradient id="beam-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#aa8531" stop-opacity=".95"/><stop offset="1" stop-color="#aa8531" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="arcade" width="8" height="40" patternUnits="userSpaceOnUse">
+      <path d="M2 34 V20 a2 2 0 0 1 4 0 V34 Z" style="fill:var(--win)"/>
+    </pattern>
+  </defs>
+
+  <g id="sky">
+    <rect width="390" height="540" fill="url(#sky)"/>
+    <g id="stars" style="opacity:var(--stars)" fill="#f7f0de">
+      <circle cx="38" cy="60" r="1.2"/><circle cx="92" cy="118" r="1"/><circle cx="148" cy="52" r="1.4"/>
+      <circle cx="210" cy="96" r="1"/><circle cx="262" cy="44" r="1.2"/><circle cx="340" cy="86" r="1"/>
+      <circle cx="366" cy="170" r="1.3"/><circle cx="58" cy="196" r="1"/><circle cx="176" cy="168" r="1.1"/>
+      <circle cx="120" cy="248" r="1"/><circle cx="300" cy="230" r="1.2"/><circle cx="24" cy="290" r="1.1"/>
+      <circle cx="236" cy="300" r="1"/><circle cx="352" cy="320" r="1.2"/><circle cx="186" cy="356" r="1"/>
+      <circle cx="70" cy="340" r="1"/><circle cx="318" cy="38" r="1"/><circle cx="124" cy="22" r="1"/>
+    </g>
+    <circle id="sun" cx="160" cy="486" r="38" style="fill:var(--s-sun);opacity:var(--sun-op)"/>
+    <circle id="moon" cx="304" cy="146" r="17" style="fill:var(--s-sun);opacity:var(--moon-op)"/>
+    <g id="birds" style="opacity:calc(1 - var(--stars));stroke:var(--birds)" fill="none" stroke-width="2" stroke-linecap="round">
+      <path d="M232 214 q9 -9 16 0 q7 -9 16 0"/><path d="M262 244 q6 -6 11 0 q5 -6 11 0"/>
+    </g>
+  </g>
+
+  <g id="beam" style="opacity:var(--beam)">
+    <path d="M82 346 L390 226 L390 332 Z" fill="url(#beam-fade)"/>
+  </g>
+
+  <g id="hills">
+    <path d="M0 506 C34 484 70 490 110 500 C150 510 180 516 200 522 L0 540 Z" style="fill:var(--hill-far)"/>
+    <path d="M0 516 C26 500 56 502 84 510 C112 518 140 524 170 530 L0 548 Z" style="fill:var(--hill-near)"/>
+  </g>
+
+  <g id="lighthouse">
+    <path d="M67 520 L97 520 L90.5 360 L73.5 360 Z" class="t-light"/>
+    <path d="M71.5 495 L92.5 495 L91.4 465 L72.6 465 Z" class="t-dark"/>
+    <path d="M74.7 435 L89.3 435 L88.2 405 L75.8 405 Z" class="t-dark"/>
+    <path d="M73.5 375 L90.5 375 L90.5 360 L73.5 360 Z" class="t-dark"/>
+    <rect x="68" y="355" width="28" height="6" rx="1" class="stone-dk"/>
+    <rect x="75" y="338" width="14" height="17" class="lamp"/>
+    <path d="M73 338 A9 9 0 0 1 91 338 Z" class="t-dark"/>
+    <path d="M82 329 V322" style="stroke:var(--t-dark)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="82" cy="347" r="14" style="fill:var(--lamp);opacity:calc(var(--beam) * .5)"/>
+  </g>
+
+  <g id="domed-building">
+    <rect x="196" y="516" width="150" height="9" class="stone-dk"/>
+    <rect x="200" y="482" width="140" height="34" class="stone"/>
+    <rect x="200" y="482" width="140" height="34" fill="url(#arcade)"/>
+    <rect x="244" y="462" width="52" height="54" class="stone"/>
+    <rect x="244" y="462" width="52" height="54" fill="url(#arcade)"/>
+    <rect x="240" y="458" width="60" height="5" class="stone-dk"/>
+    <path d="M250 458 A20 24 0 0 1 290 458 Z" class="dome"/>
+    <path d="M270 434 V424" style="stroke:var(--stone-dk)" stroke-width="2" stroke-linecap="round"/>
+    <rect x="200" y="470" width="26" height="46" class="stone"/>
+    <rect x="200" y="470" width="26" height="46" fill="url(#arcade)"/>
+    <path d="M203 470 A10 11 0 0 1 223 470 Z" class="dome"/>
+    <rect x="314" y="470" width="26" height="46" class="stone"/>
+    <rect x="314" y="470" width="26" height="46" fill="url(#arcade)"/>
+    <path d="M317 470 A10 11 0 0 1 337 470 Z" class="dome"/>
+  </g>
+
+  <g id="balcony-houses">
+    <rect x="344" y="478" width="24" height="42" class="h1"/>
+    <rect x="368" y="466" width="22" height="54" class="h2"/>
+    <rect x="340" y="496" width="32" height="4" class="wood"/>
+    <rect x="364" y="490" width="26" height="4" class="wood"/>
+    <path d="M342 496 v-7 M350 496 v-7 M358 496 v-7 M366 496 v-7 M366 490 v-7 M374 490 v-7 M382 490 v-7" style="stroke:var(--wood)" stroke-width="1.4"/>
+    <rect x="348" y="504" width="6" height="11" class="wood"/>
+    <rect x="358" y="504" width="6" height="11" class="wood"/>
+    <rect x="372" y="500" width="6" height="14" class="wood"/>
+    <rect x="348" y="484" width="6" height="8" class="win"/>
+    <rect x="374" y="472" width="6" height="12" class="win"/>
+  </g>
+
+  <g id="water">
+    <rect y="522" width="390" height="322" fill="url(#sea)"/>
+    <g id="canal-ships">
+      <g transform="translate(14 30)">
+        <path d="M0 552 H128 L118 562 H8 Z" class="hull"/>
+        <rect x="6" y="534" width="22" height="18" class="c1"/><rect x="28" y="534" width="22" height="18" class="c2"/>
+        <rect x="50" y="534" width="22" height="18" class="c3"/><rect x="72" y="534" width="22" height="18" class="c4"/>
+        <rect x="14" y="516" width="22" height="18" class="c3"/><rect x="36" y="516" width="22" height="18" class="c1"/>
+        <rect x="100" y="522" width="22" height="30" class="t-light"/>
+        <rect x="104" y="526" width="14" height="3" class="win"/>
+      </g>
+      <g transform="translate(236 203) scale(.62)">
+        <path d="M0 552 H128 L118 562 H8 Z" class="hull"/>
+        <rect x="6" y="534" width="22" height="18" class="c2"/><rect x="28" y="534" width="22" height="18" class="c4"/>
+        <rect x="50" y="534" width="22" height="18" class="c1"/><rect x="72" y="534" width="22" height="18" class="c3"/>
+        <rect x="100" y="522" width="22" height="30" class="t-light"/>
+      </g>
+    </g>
+    <g id="water-lines" fill="none" style="stroke:var(--ripple)" stroke-linecap="round" opacity=".28">
+      <path d="M20 582 q18 -5 36 0 t36 0"/><path d="M160 596 q20 -5 40 0 t40 0"/>
+      <path d="M280 580 q16 -4 32 0 t32 0"/><path d="M40 626 q22 -6 44 0 t44 0"/>
+      <path d="M200 640 q24 -6 48 0 t48 0"/><path d="M90 666 q26 -6 52 0 t52 0"/>
+      <path d="M260 676 q22 -5 44 0 t44 0"/>
+    </g>
+  </g>
+
+  <g id="shore">
+    <path d="M0 736 C60 722 130 744 200 738 C270 732 330 718 390 726 L390 844 L0 844 Z" style="fill:var(--shore)"/>
+    <path d="M0 790 C70 770 150 800 230 790 C300 782 350 772 390 780 L390 844 L0 844 Z" style="fill:var(--leaf2);opacity:.55"/>
+    <path d="M-10 822 C80 790 190 842 300 806 C340 794 366 782 400 790 L400 850 L-10 850 Z" style="fill:var(--leaf)"/>
+    <path d="M296 800 C330 770 364 756 388 760 C376 780 350 800 316 810 Z" style="fill:var(--leaf)"/>
+  </g>
+
+  <g id="procession">
+    <g class="f1" transform="translate(40 738)">
+      <ellipse cx="0" cy="-15" rx="13" ry="7.5" fill="currentColor"/><circle cx="-15" cy="-19" r="6.5" fill="currentColor"/>
+      <path class="limb" stroke-width="4" d="M-9 -11 L-12 0 M-3 -9 L-5 0 M6 -10 L12 -2 L16 0 M10 -9 L18 -4"/>
+    </g>
+    <g class="f2" transform="translate(88 738)">
+      <circle cx="0" cy="-46" r="6" fill="currentColor"/>
+      <path class="limb" stroke-width="11" d="M0 -40 L0 -22"/>
+      <path class="limb" stroke-width="5" d="M-1 -22 L-5 0 M2 -22 L6 0"/>
+      <path class="limb" stroke-width="3.5" d="M-2 -38 L-8 -28 M2 -38 L10 -55"/>
+      <circle cx="11" cy="-60" r="4.5" style="fill:var(--leaf)"/>
+    </g>
+    <g class="f3" transform="translate(134 738)">
+      <circle cx="0" cy="-71" r="6.5" fill="currentColor"/>
+      <path class="limb" stroke-width="12" d="M0 -63 L0 -38"/>
+      <path class="limb" stroke-width="5.5" d="M-1 -38 L-6 0 M2 -38 L8 0"/>
+      <path class="limb" stroke-width="4" d="M-3 -60 L-9 -42 M3 -60 L10 -44"/>
+    </g>
+    <g class="f4" transform="translate(188 738)">
+      <circle cx="0" cy="-112" r="7.5" fill="currentColor"/>
+      <path class="limb" stroke-width="3" d="M5 -116 C16 -112 16 -98 10 -92"/>
+      <path d="M-7 -102 L7 -102 L12 -50 L-12 -50 Z" fill="currentColor"/>
+      <path class="limb" stroke-width="6" d="M-3 -50 L-10 0 M3 -50 L11 0"/>
+      <path class="limb" stroke-width="4.5" d="M-6 -100 L-11 -70 M6 -100 L14 -74"/>
+    </g>
+    <g class="f5" transform="translate(246 738)">
+      <circle cx="0" cy="-124" r="8" fill="currentColor"/>
+      <path d="M-11 -114 L11 -114 L10 -62 L-10 -62 Z" fill="currentColor"/>
+      <path class="limb" stroke-width="8" d="M-4 -62 L-12 0 M4 -62 L10 0"/>
+      <path class="limb" stroke-width="6" d="M-10 -110 L-16 -74 M10 -110 L17 -80"/>
+    </g>
+    <g class="f6" transform="translate(308 738)">
+      <circle cx="7" cy="-100" r="7.5" fill="currentColor"/>
+      <path class="limb" stroke-width="17" d="M-3 -52 L5 -88"/>
+      <path class="limb" stroke-width="7" d="M-3 -52 L-8 0 M0 -52 L7 0"/>
+      <path class="limb" stroke-width="5" d="M4 -84 L14 -62"/>
+      <path class="limb" stroke-width="2.5" d="M14 -64 L16 0"/>
+    </g>
+  </g>
+</svg>
