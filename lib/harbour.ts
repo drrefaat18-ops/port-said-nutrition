@@ -316,7 +316,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
   scene.add(pivot);
 
   // finish
-  const target = new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: 4 });
+  const target = new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: 2 });
   const composer = new EffectComposer(renderer, target);
   composer.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.3, 0.6, 0.9);
@@ -324,7 +324,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
   composer.addPass(new OutputPass());
 
   // loop
-  let goal = 0, current = 0, raf = 0, last = performance.now(), time = 0, disposed = false, seg = -1;
+  let goal = 0, current = 0, reflected = -1, lastW = 0, lastH = 0, raf = 0, last = performance.now(), time = 0, disposed = false, seg = -1;
   const colA = new THREE.Color(), colB = new THREE.Color();
 
   function apply() {
@@ -376,17 +376,20 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
   }
 
   function draw() {
-    // the reflection: the same hero, flipped at the waterline, without backdrop or beam
-    back.visible = pivot.visible = false;
-    hero.scale.y = fade.scale.y = -1;
-    hero.position.y = fade.position.y = -QUAY;
-    renderer.setRenderTarget(reflRT);
-    renderer.clear();
-    renderer.render(scene, camera);
-    renderer.setRenderTarget(null);
-    hero.scale.y = fade.scale.y = 1;
-    hero.position.y = fade.position.y = QUAY;
-    back.visible = pivot.visible = true;
+    // the reflection: the same hero, flipped at the waterline, without backdrop or beam. Only redrawn when the day moves.
+    if (Math.abs(current - reflected) > 0.0005) {
+      reflected = current;
+      back.visible = pivot.visible = false;
+      hero.scale.y = fade.scale.y = -1;
+      hero.position.y = fade.position.y = -QUAY;
+      renderer.setRenderTarget(reflRT);
+      renderer.clear();
+      renderer.render(scene, camera);
+      renderer.setRenderTarget(null);
+      hero.scale.y = fade.scale.y = 1;
+      hero.position.y = fade.position.y = QUAY;
+      back.visible = pivot.visible = true;
+    }
     composer.render();
   }
 
@@ -404,10 +407,13 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
 
   function resize() {
     const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1, pr = renderer.getPixelRatio(), aspect = w / h;
+    if (w === lastW && h === lastH) return; // reallocating every target wipes the frame and costs memory
+    lastW = w; lastH = h;
     renderer.setSize(w, h, false);
     composer.setPixelRatio(pr);
     composer.setSize(w, h);
-    reflRT.setSize(Math.ceil((w * pr) / 2), Math.ceil((h * pr) / 2));
+    reflRT.setSize(Math.ceil((w * pr) / 3), Math.ceil((h * pr) / 3));
+    reflected = -1;
     camera.aspect = aspect;
     // lens shift: the camera stays level and the horizon drops to the plates' height, verticals stay straight
     camera.setViewOffset(w, h, 0, -(0.5 - HORIZON) * h, w, h);

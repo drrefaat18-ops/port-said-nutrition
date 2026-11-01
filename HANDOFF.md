@@ -6,7 +6,7 @@
 - Text sits on frosted glass cards in M Square navy and gold (`.plate` in `app/home.css`), spread wide and short so the tower stays in view. This replaces "text directly on the sky" in the redesign plan below: owner's ruling, readability first.
 - Fonts: Bodoni Moda + Hanken Grotesk. Spec sections 7, 9, 11 and the plan still describe the old direction and need updating.
 - Owner approved the look. Tasks 4, 5, 6, 8 built: `/agenda`, `/sessions/[n]`, `/sponsors`, 3D stand. Rotation bug fixed (ScrollTrigger refresh reset the scroll; restore now waits 350ms, height-only resizes ignored).
-- Left: real phone test, go-live.
+- Live: https://port-said-nutrition.vercel.app. On iPhone 15 Pro Max the tower vanished on scroll down. Not reproduced on the PC: likely Safari dropping WebGL under memory pressure plus the toolbar resize. Fixed: lost context rebuilds the scene, stage is 100lvh, MSAA 2, reflection redrawn only when the day moves. Confirm on the phone.
 
 Owner stopped the build: the look is "childish and naive, like a kids' game, not professional". Do not continue the build or polish this look. Resume when the usage limit renews, starting from "Redesign plan" below.
 
