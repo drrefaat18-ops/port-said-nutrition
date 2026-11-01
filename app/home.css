@@ -2,7 +2,7 @@
 /* lvh: Safari's toolbar collapsing on scroll must not resize the stage */
 .stage { position: fixed; inset: 0 0 auto 0; height: 100lvh; z-index: 0; background: #070b24; overflow: hidden; }
 .poster, .harbour { position: absolute; inset: 0; width: 100%; height: 100%; }
-.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 64.5%; }
+.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 64.5%; transform: scale(calc(1 + var(--day, 0) * 0.08)); transform-origin: 50% 64.5%; }
 .poster-day { opacity: clamp(0, calc(var(--day, 0) / 0.35), 1); }
 .poster-sunset { opacity: clamp(0, calc((var(--day, 0) - 0.35) / 0.32), 1); }
 .poster-night { opacity: clamp(0, calc((var(--day, 0) - 0.67) / 0.21), 1); }

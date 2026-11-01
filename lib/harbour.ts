@@ -5,7 +5,9 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { friezeCanvas } from "./frieze";
 
-export type Harbour = { setProgress(p: number, snap?: boolean): void; resize(): void; dispose(): void };
+export type Harbour = { setProgress(p: number, snap?: boolean): void; resize(): void; dispose(): void; stats(): { frames: number; pixelRatio: number; glError: number } };
+// How hard to push the GPU: 0 desktop, 1 phone, 2 a phone that has already dropped the scene once.
+export type Options = { level: 0 | 1 | 2; onFail(): void };
 
 // ---- Time of day ---------------------------------------------------------------------------
 
@@ -99,8 +101,13 @@ void main() {
 const BEAM_FRAG = /* glsl */ `
 uniform float uOpacity; varying float vT; varying vec3 vN; varying vec3 vV;
 void main() {
-  float edge = pow(abs(dot(normalize(vN), normalize(vV))), 2.4);
-  gl_FragColor = vec4(1.0, 0.8, 0.45, uOpacity * edge * pow(1.0 - vT, 1.7));
+  // Where the cone's two sides meet the normal cancels to zero. Normalizing that gives NaN, and bloom spreads one NaN pixel over the whole frame.
+  float n = length(vN);
+  if (n < 0.0001) discard;
+  float edge = pow(abs(dot(vN / n, normalize(vV))), 2.4);
+  float a = uOpacity * edge * pow(1.0 - vT, 1.7);
+  if (!(a > 0.0 && a <= 1.0)) discard; // written so NaN fails it too
+  gl_FragColor = vec4(1.0, 0.8, 0.45, a);
 }`;
 
 // ---- Materials and shapes ------------------------------------------------------------------
@@ -183,13 +190,16 @@ function plateEnv(pmrem: THREE.PMREMGenerator, img: HTMLImageElement, saturate: 
 
 // ---- Scene ---------------------------------------------------------------------------------
 
-export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour> {
+export async function createHarbour(canvas: HTMLCanvasElement, { level, onFail }: Options): Promise<Harbour> {
   const loader = new THREE.TextureLoader();
   const plates = await Promise.all(STOPS.map((s) => loader.loadAsync(`/sky/${s.plate}.webp`)));
   for (const t of plates) { t.colorSpace = THREE.SRGBColorSpace; t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; }
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: "high-performance", preserveDrawingBuffer: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, [2, 1.5, 1.25][level]));
+  renderer.debug.onShaderError = onFail;
+  // Upfront, so no photo lands on the GPU halfway down the page.
+  for (const t of plates) renderer.initTexture(t);
   // Neutral, not ACES: it leaves the photographs' colours alone below the highlights.
   renderer.toneMapping = THREE.NeutralToneMapping;
   renderer.toneMappingExposure = 1;
@@ -316,7 +326,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
   scene.add(pivot);
 
   // finish
-  const target = new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: 2 });
+  const target = new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: level === 2 ? 0 : 2 });
   const composer = new EffectComposer(renderer, target);
   composer.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.3, 0.6, 0.9);
@@ -324,7 +334,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
   composer.addPass(new OutputPass());
 
   // loop
-  let goal = 0, current = 0, reflected = -1, lastW = 0, lastH = 0, raf = 0, last = performance.now(), time = 0, disposed = false, seg = -1;
+  let goal = 0, current = 0, reflected = -1, lastW = 0, lastH = 0, raf = 0, frames = 0, last = performance.now(), time = 0, disposed = false, seg = -1;
   const colA = new THREE.Color(), colB = new THREE.Color();
 
   function apply() {
@@ -372,6 +382,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
     wash.position.set(x - 46, QUAY + 30, 90);
     wash.intensity = glow * 260;
     beamMat.uniforms.uOpacity.value = glow * glow * 0.55;
+    pivot.visible = glow > 0;
     bloom.strength = mix(a.bloom, b.bloom, t);
   }
 
@@ -379,6 +390,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
     // the reflection: the same hero, flipped at the waterline, without backdrop or beam. Only redrawn when the day moves.
     if (Math.abs(current - reflected) > 0.0005) {
       reflected = current;
+      const beam = pivot.visible;
       back.visible = pivot.visible = false;
       hero.scale.y = fade.scale.y = -1;
       hero.position.y = fade.position.y = -QUAY;
@@ -388,7 +400,8 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
       renderer.setRenderTarget(null);
       hero.scale.y = fade.scale.y = 1;
       hero.position.y = fade.position.y = QUAY;
-      back.visible = pivot.visible = true;
+      back.visible = true;
+      pivot.visible = beam;
     }
     composer.render();
   }
@@ -403,6 +416,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
     pivot.rotation.y = time * 0.5;
     apply();
     draw();
+    frames++;
   }
 
   function resize() {
@@ -427,6 +441,7 @@ export async function createHarbour(canvas: HTMLCanvasElement): Promise<Harbour>
   return {
     setProgress(p, snap = false) { goal = clamp01(p); if (snap) current = goal; },
     resize,
+    stats: () => ({ frames, pixelRatio: renderer.getPixelRatio(), glError: renderer.getContext().getError() }),
     dispose() {
       if (disposed) return;
       disposed = true;
