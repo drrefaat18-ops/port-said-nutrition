@@ -5,7 +5,7 @@
 - Current site: `/` holds the day scene, agenda and organizers; `/sponsors` holds the packages, their contact buttons and the 3D stand. `/agenda` and `/sessions/[n]` were removed; older sections below that mention them are history.
 - Content lives in `content/*.json`. `npm run check` tests every value against `docs/agenda-source.md`, the machine copy of the agenda PDF. Keep the rule: not in the agenda, not on the site.
 - Spec: `docs/DESIGN-SPEC.md`, partly superseded as its first line says. Paths starting `D:\` below are on Dr Refaat's PC and are not in this repo.
-- Live: https://port-said-nutrition.vercel.app, on Dr Refaat's Vercel account, deployed by CLI and not linked to this repo. A push does not change it; ask him for deploy access.
+- Live: https://port-said-nutrition.vercel.app, on Dr Refaat's Vercel account and linked to this repo. A push to `master` goes live on its own; any other branch gets a preview. Run the checks above before pushing to `master`.
 - Open: test the lighthouse on a real iPhone.
 
 ## Current state (2026-11-01, evening): Gold Lighthouse built, waiting for the owner's look approval
