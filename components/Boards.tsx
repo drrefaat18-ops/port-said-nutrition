@@ -40,8 +40,12 @@ export default function Boards({ children }: { children: ReactNode }) {
     const st = ScrollTrigger.create({ start: 0, end: "max", onUpdate: progress });
 
     // a phone turned, or its address bar moved: stay on the current board
-    let timer = 0;
+    // The address bar only changes the height: leave the scroll alone. ScrollTrigger resets the scroll
+    // when it refreshes, 200ms after a turn, so the board is restored after that.
+    let timer = 0, width = window.innerWidth;
     const onResize = () => {
+      if (window.innerWidth === width) return;
+      width = window.innerWidth;
       resizing = true; // the scroll offset is meaningless while the viewport changes
       clearTimeout(timer);
       timer = window.setTimeout(() => {
@@ -51,7 +55,7 @@ export default function Boards({ children }: { children: ReactNode }) {
         window.scrollTo(0, top);
         resizing = false;
         progress();
-      }, 120);
+      }, 350);
     };
     window.addEventListener("resize", onResize);
 

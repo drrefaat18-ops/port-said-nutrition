@@ -1,0 +1,98 @@
+/* Inner pages: the night quay behind frosted navy and gold cards */
+.inner {
+  --text: #fbf6ea; --gold-light: #e8c777;
+  position: relative; min-height: 100svh; color: var(--text);
+  padding: 5rem var(--gutter) var(--space-5);
+}
+.inner::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: linear-gradient(rgb(5 7 36 / 0.45), rgb(5 7 36 / 0.82)), #070b24 url("/sky/night.webp") 62% 70% / cover no-repeat;
+}
+.inner a { color: inherit; }
+.column { max-width: 46rem; margin-inline: auto; display: grid; gap: var(--space-3); }
+.inner h1 { font-size: var(--step-3); font-weight: 500; }
+.inner h2 { font-size: var(--step-2); font-weight: 500; }
+.inner h3 { font-size: var(--step--1); font-family: var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: var(--gold-light); }
+.inner .theme { font-family: var(--font-display); font-style: italic; color: var(--gold-light); }
+
+.pagebar {
+  position: fixed; inset: 0 0 auto 0; z-index: 3;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.5rem var(--gutter); color: #fbf6ea;
+  background: rgb(7 9 44 / 0.55); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgb(232 199 119 / 0.3);
+}
+.pagebar nav { display: flex; gap: 1.25rem; }
+.pagebar a {
+  text-decoration: none; font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase;
+  min-height: 2.75rem; display: inline-flex; align-items: center;
+}
+.pagebar a:hover { color: #e8c777; }
+
+.glass {
+  padding: 1.1rem 1.25rem; min-width: 0;
+  background: linear-gradient(145deg, rgb(232 199 119 / 0.3), rgb(170 133 49 / 0.1) 42%, rgb(170 133 49 / 0.2)), rgb(9 9 56 / 0.5);
+  -webkit-backdrop-filter: blur(20px) saturate(165%); backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid rgb(232 199 119 / 0.55); border-radius: 1.1rem;
+  box-shadow: inset 0 1px 0 rgb(255 236 190 / 0.45), 0 18px 40px -16px rgb(3 5 30 / 0.65);
+  display: grid; gap: 0.6rem;
+}
+
+.toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.toggle button, .tier-pick label {
+  min-height: 2.75rem; cursor: pointer; border-radius: 0.7rem;
+  border: 1px solid rgb(232 199 119 / 0.55); background: transparent; color: var(--text);
+  display: grid; place-items: center; transition: background-color 0.25s, color 0.25s;
+}
+.toggle button[aria-pressed="true"], .tier-pick input:checked + label { background: #e8c777; color: #090968; }
+.tier-pick { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
+.tier-pick legend { padding: 0; margin-bottom: 0.5rem; }
+.tier-pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.tier-pick input:focus-visible + label { outline: 3px solid #e8c777; outline-offset: 2px; }
+.tier-pick label { font-size: 0.82rem; }
+
+/* Agenda */
+.agenda { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+.time { font-size: var(--step--1); font-variant-numeric: tabular-nums; color: var(--gold-light); }
+.slot { padding: 0.6rem 1.25rem; display: grid; gap: 0.1rem; }
+.slot.symposium { border-left: 3px solid #e8c777; background: rgb(232 199 119 / 0.14); border-radius: 0.5rem; }
+details.glass summary { cursor: pointer; font-family: var(--font-display); font-size: var(--step-1); line-height: 1.2; min-height: 2.75rem; }
+details.glass summary span { display: block; }
+details.glass summary .num { font-family: var(--font-text); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); }
+.talks { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+.talks li { display: grid; gap: 0.1rem; overflow-wrap: anywhere; }
+.who { font-weight: 600; }
+.go { display: inline-flex; align-items: center; min-height: 2.75rem; }
+
+/* Sessions */
+.visual { width: 7.5rem; height: 7.5rem; color: #e8c777; }
+.visual * { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.4s var(--ease-out) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .visual * { animation: none; stroke-dashoffset: 0; } }
+.pager { display: flex; justify-content: space-between; gap: var(--space-2); }
+
+/* Sponsors */
+.stand-view { position: relative; height: 12.5rem; border-radius: 0.7rem; overflow: hidden; }
+.stand-view canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 0.6s; }
+.stand-view canvas.live { opacity: 1; }
+.plan { display: grid; place-items: center; height: 100%; }
+.plan svg { width: 100%; height: 100%; color: #e8c777; }
+.plan text { fill: currentColor; font-size: 0.3px; font-family: var(--font-text); }
+.facts { list-style: none; padding: 0; margin: 0; display: grid; }
+.facts li { display: flex; justify-content: space-between; gap: var(--space-2); padding: 0.4rem 0; border-bottom: 1px solid rgb(232 199 119 / 0.3); }
+.facts li:last-child { border-bottom: 0; }
+.facts span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.price { font-family: var(--font-display); font-size: var(--step-3); }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.compare { border-collapse: collapse; min-width: 32rem; width: 100%; font-size: 0.9rem; }
+.compare th, .compare td { padding: 0.45rem 0.6rem; text-align: left; border-bottom: 1px solid rgb(232 199 119 / 0.3); }
+.compare thead th { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; }
+.compare tbody th { font-weight: 500; color: var(--gold-light); position: sticky; left: 0; background: rgb(12 12 60); }
+.includes { margin: 0; padding-left: 1.1rem; }
+.mailto { justify-self: start; min-height: 2.75rem; display: inline-flex; align-items: center; padding: 0 1.25rem; border-radius: 0.7rem; background: #e8c777; color: #090968 !important; text-decoration: none; font-weight: 600; }
+.org { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.msquare { width: 9.5rem; height: auto; background: #fff; padding: 0.4rem 0.6rem; border-radius: 0.25rem; }
+.syndicate { width: 3.5rem; height: 3.5rem; }
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; font-size: 0.95rem; }
+.contact a { min-height: 2.75rem; display: inline-flex; align-items: center; overflow-wrap: anywhere; }
+.contact > :last-child { grid-column: 1 / -1; }

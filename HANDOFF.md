@@ -5,7 +5,8 @@
 - Conference identity: the procession is a gold inlay on the quay wall (`lib/frieze.ts`), and the roundel sits beside the title. M Square: frosted glass cards in M Square navy and gold, gold, and its logo only under "Organized by".
 - Text sits on frosted glass cards in M Square navy and gold (`.plate` in `app/home.css`), spread wide and short so the tower stays in view. This replaces "text directly on the sky" in the redesign plan below: owner's ruling, readability first.
 - Fonts: Bodoni Moda + Hanken Grotesk. Spec sections 7, 9, 11 and the plan still describe the old direction and need updating.
-- Next, after approval: known bugs below, then Tasks 4, 5, 6, 8, 9. Not committed yet.
+- Owner approved the look. Tasks 4, 5, 6, 8 built: `/agenda`, `/sessions/[n]`, `/sponsors`, 3D stand. Rotation bug fixed (ScrollTrigger refresh reset the scroll; restore now waits 350ms, height-only resizes ignored).
+- Left: real phone test, go-live.
 
 Owner stopped the build: the look is "childish and naive, like a kids' game, not professional". Do not continue the build or polish this look. Resume when the usage limit renews, starting from "Redesign plan" below.
 
