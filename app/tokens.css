@@ -1,0 +1,138 @@
+/*
+  Visual world: one day over the Port Said harbour.
+  Port Said is the place (sea light, sky), the conference leads dawn and day
+  (green, teal, blue from its roundel), M Square leads night (navy and gold, exact).
+  The phases meet at sunset.
+*/
+:root {
+  /* M Square: exact */
+  --ms-navy: #090968;
+  --ms-gold: #aa8531;
+
+  /* Conference: from the roundel */
+  --conf-green: #3f9e49;
+  --conf-leaf: #7cc243;
+  --conf-teal: #1a9aa0;
+  --conf-blue: #1b5fa8;
+  --conf-deep: #0d3c78;
+
+  /* Dawn */
+  --dawn-sky-top: #a9c9e6;
+  --dawn-sky-bottom: #f6d3bd;
+  --dawn-sun: #fff1d4;
+  --dawn-water-top: #d9b9b0;
+  --dawn-water-bottom: #5f93ad;
+  --dawn-ink: #0b2a44;
+  --dawn-paper: #fbf3ec;
+  --dawn-stone: #f1e3d6;
+  --dawn-dome: #4aa7a3;
+
+  /* Day */
+  --day-sky-top: #3f8fd6;
+  --day-sky-bottom: #cfe8f5;
+  --day-sun: #fffbe6;
+  --day-water-top: #7fc3d6;
+  --day-water-bottom: #1b6f9b;
+  --day-ink: #0a2540;
+  --day-paper: #f4fbfb;
+  --day-stone: #f7f2ea;
+  --day-dome: #2a9d9a;
+
+  /* Sunset: the handover from conference colours to M Square's */
+  --sunset-sky-top: #3b3a86;
+  --sunset-sky-bottom: #f2a15f;
+  --sunset-sun: #ffd28a;
+  --sunset-water-top: #d98a6c;
+  --sunset-water-bottom: #3a3b7c;
+  --sunset-ink: #fdf1e2;
+  --sunset-paper: #1a1a63;
+  --sunset-stone: #e9c9a8;
+  --sunset-dome: #6a7fa8;
+
+  /* Night */
+  --night-sky-top: #04043a;
+  --night-sky-bottom: #090968;
+  --night-sun: #f4ecd2;
+  --night-water-top: #101078;
+  --night-water-bottom: #03032a;
+  --night-ink: #f7f0de;
+  --night-paper: #06064a;
+  --night-stone: #6f739c;
+  --night-dome: #8e95c4;
+  --night-beam: var(--ms-gold);
+
+  /* Live phase colours: the home boards switch data-phase on the root */
+  --sky-top: var(--dawn-sky-top);
+  --sky-bottom: var(--dawn-sky-bottom);
+  --sun: var(--dawn-sun);
+  --water-top: var(--dawn-water-top);
+  --water-bottom: var(--dawn-water-bottom);
+  --ink: var(--dawn-ink);
+  --paper: var(--dawn-paper);
+  --stone: var(--dawn-stone);
+  --dome: var(--dawn-dome);
+
+  /* Type: fluid, phone first; display 6rem max */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-text: var(--font-figtree), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 1vw, 2.1rem);
+  --step-3: clamp(2.1rem, 1.7rem + 2vw, 3.2rem);
+  --step-4: clamp(2.7rem, 2rem + 3.5vw, 4.8rem);
+  --measure: 66ch;
+
+  /* Space */
+  --gutter: clamp(1rem, 5vw, 2rem);
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-phase="morning"],
+:root[data-phase="day"],
+:root[data-phase="afternoon"] {
+  --sky-top: var(--day-sky-top);
+  --sky-bottom: var(--day-sky-bottom);
+  --sun: var(--day-sun);
+  --water-top: var(--day-water-top);
+  --water-bottom: var(--day-water-bottom);
+  --ink: var(--day-ink);
+  --paper: var(--day-paper);
+  --stone: var(--day-stone);
+  --dome: var(--day-dome);
+}
+
+:root[data-phase="sunset"] {
+  --sky-top: var(--sunset-sky-top);
+  --sky-bottom: var(--sunset-sky-bottom);
+  --sun: var(--sunset-sun);
+  --water-top: var(--sunset-water-top);
+  --water-bottom: var(--sunset-water-bottom);
+  --ink: var(--sunset-ink);
+  --paper: var(--sunset-paper);
+  --stone: var(--sunset-stone);
+  --dome: var(--sunset-dome);
+}
+
+:root[data-phase="night"] {
+  --sky-top: var(--night-sky-top);
+  --sky-bottom: var(--night-sky-bottom);
+  --sun: var(--night-sun);
+  --water-top: var(--night-water-top);
+  --water-bottom: var(--night-water-bottom);
+  --ink: var(--night-ink);
+  --paper: var(--night-paper);
+  --stone: var(--night-stone);
+  --dome: var(--night-dome);
+}
+
+::selection {
+  background: var(--ms-gold);
+  color: var(--ms-navy);
+}
