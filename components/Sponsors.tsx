@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { conference } from "@/content";
-import { mailHref } from "@/lib/mail";
+import { conference, team } from "@/content";
+import { mailHref, whatsappHref } from "@/lib/mail";
 import Organizers from "./Organizers";
 import Stand from "./Stand";
 
@@ -18,6 +18,8 @@ const ROWS: [string, (t: (typeof tiers)[number]) => string | undefined][] = [
   ["Exhibition area", (t) => t.area],
   ["Roll ups", (t) => t.rollUps],
 ];
+
+const omar = team[0].phone;
 
 export default function Sponsors() {
   const [name, setName] = useState(tiers[0].name);
@@ -47,7 +49,10 @@ export default function Sponsors() {
             return v ? [<li key={label}><span>{label}</span><span>{v}</span></li>] : [];
           })}
         </ul>
-        <a className="mailto" href={mailHref(email, tier.name)}>Email about {tier.name}</a>
+        <div className="reach">
+          <a className="mailto wa" href={whatsappHref(omar, tier.name)} target="_blank" rel="noreferrer">WhatsApp about {tier.name}</a>
+          <a className="mailto ghost" href={mailHref(email, tier.name)}>Email about {tier.name}</a>
+        </div>
       </section>
 
       <section className="glass" aria-labelledby="compare">
@@ -64,6 +69,12 @@ export default function Sponsors() {
                   {tiers.map((t) => <td key={t.name}>{get(t) ?? ""}</td>)}
                 </tr>
               ))}
+              <tr>
+                <th scope="row">WhatsApp</th>
+                {tiers.map((t) => (
+                  <td key={t.name}><a href={whatsappHref(omar, t.name)} target="_blank" rel="noreferrer" aria-label={`WhatsApp about ${t.name}`}>Send</a></td>
+                ))}
+              </tr>
             </tbody>
           </table>
         </div>

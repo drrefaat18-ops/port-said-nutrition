@@ -1,6 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { logoScale, mailHref, rollUpCount, standSize } from "./mail.ts";
+import { logoScale, mailHref, rollUpCount, standSize, whatsappHref } from "./mail.ts";
+
+test("whatsappHref dials Egypt and names the package", () => {
+  const href = whatsappHref("01002906884", "Gold");
+  assert.ok(href.startsWith("https://wa.me/201002906884?text="));
+  assert.ok(decodeURIComponent(href).includes("Gold package"));
+});
 
 test("standSize reads the printed area", () => {
   assert.deepEqual(standSize("6X2"), { w: 6, d: 2 });
