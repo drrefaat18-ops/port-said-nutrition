@@ -1,8 +1,8 @@
 import { conference } from "@/content";
 
 const LOGOS = [
-  { src: "/logos/conference.png", alt: "" },
   { src: "/logos/syndicate.png", alt: "Port Said Medical Syndicate" },
+  { src: "/logos/conference.png", alt: "" },
   { src: "/logos/efncc.png", alt: "Egyptian Foundation of Nutrition and Child Care (EFNCC)" },
 ];
 
@@ -10,7 +10,7 @@ const LOGOS = [
 const words = conference.name.split(" ");
 const [lead, rest] = [words.slice(0, 2).join(" "), words.slice(2).join(" ")];
 
-// The opening: open sky only, the three logos at one size across the top, the conference in the middle.
+// The opening: open sky only, the three logos at one size across the top, the conference logo in the middle.
 // Its sky is opaque, so the lighthouse rises into view as this board scrolls away.
 export default function B0() {
   return (
