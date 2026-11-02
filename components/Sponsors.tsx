@@ -21,6 +21,8 @@ const ROWS: [string, (t: (typeof tiers)[number]) => string | undefined][] = [
 
 const omar = team[0].phone;
 
+const Flourish = () => <div className="flourish" aria-hidden="true"><i /></div>;
+
 export default function Sponsors() {
   const [name, setName] = useState(tiers[0].name);
   useEffect(() => {
@@ -43,6 +45,7 @@ export default function Sponsors() {
         </fieldset>
         <Stand tier={tier} />
         <p className="price">{tier.price}</p>
+        <p className="price-name">{tier.name} package</p>
         <ul className="facts">
           {ROWS.slice(1).flatMap(([label, get]) => {
             const v = get(tier);
@@ -57,6 +60,7 @@ export default function Sponsors() {
 
       <section className="glass" aria-labelledby="compare">
         <h2 id="compare">All packages</h2>
+        <Flourish />
         <div className="scroll" tabIndex={0} role="region" aria-labelledby="compare">
           <table className="compare">
             <thead>
@@ -82,6 +86,7 @@ export default function Sponsors() {
 
       <section className="glass" aria-labelledby="alacarte">
         <h2 id="alacarte">A la carte</h2>
+        <Flourish />
         <ul className="facts">
           {alaCarte.map((a) => <li key={a.name}><span>{a.name}</span><span>{a.price}</span></li>)}
         </ul>
@@ -89,6 +94,7 @@ export default function Sponsors() {
 
       <section className="glass" aria-labelledby="registration">
         <h2 id="registration">Registration</h2>
+        <Flourish />
         <ul className="facts">
           {registration.prices.map((p) => <li key={p.name}><span>{p.name}</span><span>{p.price}</span></li>)}
         </ul>
@@ -100,6 +106,7 @@ export default function Sponsors() {
 
       <section className="glass" aria-labelledby="rooms">
         <h2 id="rooms">Accommodation</h2>
+        <Flourish />
         <ul className="facts">
           {rooms.map((r) => <li key={r.name}><span>{r.name}</span><span>{r.price}</span></li>)}
         </ul>
@@ -107,6 +114,7 @@ export default function Sponsors() {
 
       <section className="glass" aria-labelledby="org">
         <h2 id="org">Organized by</h2>
+        <Flourish />
         <Organizers />
       </section>
     </>
