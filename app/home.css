@@ -214,6 +214,34 @@
 .moment-time { font-size: 0.85rem; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; opacity: 0.9; }
 .moment-time b { font-size: 1.05rem; font-weight: 600; color: var(--gold-light); }
 
+/* Day 2: two long sessions, each on its own gold-framed panel inside the honour card */
+.plate.honour.day-two { max-width: 52rem; gap: 0.45rem; padding: 1.75rem 1.35rem 1.5rem; }
+.plate.honour.day-two .eyebrow { margin: 0; font-size: 0.72rem; letter-spacing: 0.26em; }
+.plate.honour.day-two h2.laureate {
+  font-family: var(--font-display); font-size: clamp(2.3rem, 1.8rem + 2.4vw, 3.4rem); font-weight: 500;
+  letter-spacing: 0; text-transform: none; color: #e8c777;
+}
+.long-sessions { list-style: none; margin: 1.25rem 0 0; padding: 0; width: 100%; display: grid; gap: 1.4rem; }
+.long-sessions li {
+  position: relative; display: grid; justify-items: center; align-content: start; gap: 0.3rem; text-align: center;
+  padding: 1.5rem 1rem 1.05rem; border-radius: 0.85rem;
+  border: 1px solid rgb(232 199 119 / 0.45);
+  background: linear-gradient(160deg, rgb(232 199 119 / 0.12), rgb(9 9 56 / 0) 55%), rgb(5 6 34 / 0.35);
+  box-shadow: inset 0 1px 0 rgb(255 236 190 / 0.18);
+}
+.medal {
+  position: absolute; top: 0; left: 50%; translate: -50% -50%;
+  display: grid; place-items: center; width: 2.3rem; height: 2.3rem; border-radius: 50%;
+  font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: #090968;
+  background: linear-gradient(135deg, #f8e7b6, #d1a548 55%, #f3dc9f);
+  box-shadow: 0 0 0 3px rgb(7 7 40 / 0.9), 0 0 0 4px rgb(232 199 119 / 0.55), 0 6px 18px -6px rgb(232 199 119 / 0.8);
+}
+.long-time { font-size: 0.82rem; letter-spacing: 0.14em; font-variant-numeric: tabular-nums; opacity: 0.9; }
+.long-time b { font-size: 1rem; font-weight: 600; color: var(--gold-light); }
+.plate.honour .long-title { margin: 0; letter-spacing: 0; text-transform: none; font-family: var(--font-display); font-weight: 500; font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.6rem); line-height: 1.2; color: #fbf6ea; text-wrap: balance; }
+.long-speaker { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); }
+.long-speaker::before { content: ""; display: block; width: 2rem; height: 1px; margin: 0.15rem auto 0.45rem; background: rgb(232 199 119 / 0.6); }
+
 /* Previous / next */
 .steps { position: fixed; right: var(--gutter); top: 4.25rem; z-index: 3; display: flex; gap: 0.5rem; }
 .steps button {
@@ -232,6 +260,8 @@
   .laureates .laureate { white-space: nowrap; font-size: 2.25rem; }
   .program li { grid-template-columns: 4.6rem minmax(0, 1fr) 12rem; column-gap: 1.25rem; }
   .when { grid-row: auto; }
+  .long-sessions { grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 1.4rem; }
+  .long-sessions li { align-content: center; }
   .moments { grid-template-columns: 1.25fr 1fr; align-items: end; max-width: 56rem; margin-inline: auto; }
   .plate.honour.moment, .plate.honour.moment.minor { width: 100%; max-width: none; }
   .speaker { text-align: right; font-size: 0.86rem; }

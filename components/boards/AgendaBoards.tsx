@@ -106,11 +106,24 @@ export default function AgendaBoards() {
         </section>
       )).flatMap((board, i) => (stops[i].moments.length ? [board, <Moments key={`m${i}`} moments={stops[i].moments} />] : [board]))}
       <section className="board" id="day-2" aria-labelledby="d2">
-        <div className="plate session">
-          <h2 id="d2">{day2.title}</h2>
-          <ul className="program">
-            {day2.items.flatMap((t) => t.kind === "long" ? [<Talk key={t.time} {...t} />] : [])}
-          </ul>
+        <div className="plate honour day-two">
+          <p className="eyebrow">{conference.name}</p>
+          <h2 id="d2" className="laureate">{day2.title}</h2>
+          <div className="flourish" aria-hidden="true"><i /></div>
+          <ol className="long-sessions">
+            {day2.items.flatMap((t, i) => {
+              if (t.kind !== "long") return [];
+              const [from, to] = t.time.split(" - ");
+              return [
+                <li key={t.time}>
+                  <span className="medal" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="long-time"><b>{from}</b> – {to}</p>
+                  <h3 className="long-title">{t.title}</h3>
+                  {t.speakers.length > 0 && <p className="long-speaker">{t.speakers.join(", ")}</p>}
+                </li>,
+              ];
+            })}
+          </ol>
         </div>
       </section>
     </>
