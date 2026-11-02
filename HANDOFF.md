@@ -3,7 +3,7 @@
 ## Start here (Khaled, 2026-11-02)
 - Setup: `npm install`, `npm run dev`. Before a commit: `npm test`, `npm run check`, `npm run build` (static export to `out/`).
 - Current site: `/` holds the day scene, agenda and organizers; `/sponsors` holds the packages, their contact buttons and the 3D stand. `/agenda` and `/sessions/[n]` were removed; older sections below that mention them are history.
-- Content lives in `content/*.json`. `npm run check` tests every value against `docs/agenda-source.md`, the machine copy of the agenda PDF. Keep the rule: not in the agenda, not on the site.
+- Content lives in `content/*.json`. `npm run check` tests every value against `docs/agenda-source.md`, the machine copy of the agenda PDF. Keep the rule: not in the agenda, not on the site. Changes the owner approves after the PDF go in `docs/agenda-changes.md`, which the check also reads.
 - Spec: `docs/DESIGN-SPEC.md`, partly superseded as its first line says. Paths starting `D:\` below are on Dr Refaat's PC and are not in this repo.
 - Live: https://port-said-nutrition.vercel.app, on Dr Refaat's Vercel account and linked to this repo. A push to `master` goes live on its own; any other branch gets a preview. Run the checks above before pushing to `master`.
 - Open: test the lighthouse on a real iPhone.

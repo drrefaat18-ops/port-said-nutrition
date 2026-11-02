@@ -1,8 +1,10 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import assert from "node:assert/strict";
 
 const SOURCE = fileURLToPath(new URL("../docs/agenda-source.md", import.meta.url));
+// Changes the owner approved after the PDF; checked as if they were part of it.
+const CHANGES = fileURLToPath(new URL("../docs/agenda-changes.md", import.meta.url));
 const norm = (s) => s.replace(/\s+/g, "").toLowerCase();
 
 export function missing(values, source) {
@@ -35,7 +37,7 @@ function shape(conference) {
 function main() {
   const file = new URL("../content/conference.json", import.meta.url);
   const conference = JSON.parse(readFileSync(file, "utf8"));
-  const source = readFileSync(process.argv[2] ?? SOURCE, "utf8");
+  const source = readFileSync(process.argv[2] ?? SOURCE, "utf8") + "\n" + (existsSync(CHANGES) ? readFileSync(CHANGES, "utf8") : "");
   const bad = missing(strings(conference), source);
   if (bad.length) {
     console.error("Not in the source copy:\n" + bad.map((b) => "  " + b).join("\n"));
