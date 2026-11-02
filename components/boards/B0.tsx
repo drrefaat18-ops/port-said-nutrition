@@ -37,7 +37,7 @@ export default function B0() {
           <span>{conference.venue}</span>
         </p>
       </div>
-      <a className="hero-cue" href="#b1" aria-label="Scroll to the lighthouse">
+      <a className="hero-cue" href="#b2" aria-label="Scroll to the presidents">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </a>
     </section>

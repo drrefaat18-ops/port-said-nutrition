@@ -12,7 +12,7 @@ import { dayPhase } from "@/lib/day";
 // The boards run through one day, and the programme runs with them. Scroll drives --day on the root and the `harbour:progress` event.
 export default function Boards({ children }: { children: ReactNode }) {
   const [index, setIndex] = useState(0);
-  const [count, setCount] = useState(14);
+  const [count, setCount] = useState(13);
   const at = useRef(0);
   const go = useRef<(dir: 1 | -1) => void>(() => {});
 
