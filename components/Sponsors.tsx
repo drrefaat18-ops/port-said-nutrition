@@ -9,7 +9,6 @@ import Stand from "./Stand";
 const { tiers, alaCarte, registration, rooms, email } = conference;
 
 const ROWS: [string, (t: (typeof tiers)[number]) => string | undefined][] = [
-  ["Price", (t) => t.price],
   ["Sponsors", (t) => t.sponsors],
   ["Session", (t) => t.session],
   ["Logo size", (t) => t.logo],
@@ -47,7 +46,7 @@ export default function Sponsors() {
         <p className="price">{tier.price}</p>
         <p className="price-name">{tier.name} package</p>
         <ul className="facts">
-          {ROWS.slice(1).flatMap(([label, get]) => {
+          {ROWS.flatMap(([label, get]) => {
             const v = get(tier);
             return v ? [<li key={label}><span>{label}</span><span>{v}</span></li>] : [];
           })}
@@ -55,32 +54,6 @@ export default function Sponsors() {
         <div className="reach">
           <a className="mailto wa" href={whatsappHref(omar, tier.name)} target="_blank" rel="noreferrer" aria-label={`WhatsApp about ${tier.name}`}>WhatsApp</a>
           <a className="mailto ghost" href={mailHref(email, tier.name)} aria-label={`Email about ${tier.name}`}>Email</a>
-        </div>
-      </section>
-
-      <section className="glass" aria-labelledby="compare">
-        <h2 id="compare">All packages</h2>
-        <Flourish />
-        <div className="scroll" tabIndex={0} role="region" aria-labelledby="compare">
-          <table className="compare">
-            <thead>
-              <tr><td />{tiers.map((t) => <th key={t.name} scope="col">{t.name}</th>)}</tr>
-            </thead>
-            <tbody>
-              {ROWS.map(([label, get]) => (
-                <tr key={label}>
-                  <th scope="row">{label}</th>
-                  {tiers.map((t) => <td key={t.name}>{get(t) ?? ""}</td>)}
-                </tr>
-              ))}
-              <tr>
-                <th scope="row">WhatsApp</th>
-                {tiers.map((t) => (
-                  <td key={t.name}><a href={whatsappHref(omar, t.name)} target="_blank" rel="noreferrer" aria-label={`WhatsApp about ${t.name}`}>Send</a></td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
         </div>
       </section>
 
