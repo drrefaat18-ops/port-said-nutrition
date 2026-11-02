@@ -7,11 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { dayPhase } from "@/lib/day";
 
-const COUNT = 13;
+
 
 // The boards run through one day, and the programme runs with them. Scroll drives --day on the root and the `harbour:progress` event.
 export default function Boards({ children }: { children: ReactNode }) {
   const [index, setIndex] = useState(0);
+  const [count, setCount] = useState(14);
   const at = useRef(0);
   const go = useRef<(dir: 1 | -1) => void>(() => {});
 
@@ -20,6 +21,7 @@ export default function Boards({ children }: { children: ReactNode }) {
     const root = document.documentElement;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const boards = gsap.utils.toArray<HTMLElement>(".board");
+    setCount(boards.length);
     const lenis = still ? null : new Lenis({ lerp: 0.09, anchors: true });
     lenis?.on("scroll", ScrollTrigger.update);
     const tick = (t: number) => lenis?.raf(t * 1000);
@@ -96,8 +98,8 @@ export default function Boards({ children }: { children: ReactNode }) {
   return (
     <>
       <header className="bar">
-        <p className="counter" aria-label={`Board ${index + 1} of ${COUNT}`}>
-          {String(index + 1).padStart(2, "0")} / {String(COUNT).padStart(2, "0")}
+        <p className="counter" aria-label={`Board ${index + 1} of ${count}`}>
+          {String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
         </p>
         <nav aria-label="Site">
           <a href="#day-1">Day 1</a>
@@ -110,7 +112,7 @@ export default function Boards({ children }: { children: ReactNode }) {
         <button type="button" onClick={() => go.current(-1)} disabled={index === 0} aria-label="Previous board">
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 15l7-7 7 7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
-        <button type="button" onClick={() => go.current(1)} disabled={index === COUNT - 1} aria-label="Next board">
+        <button type="button" onClick={() => go.current(1)} disabled={index === count - 1} aria-label="Next board">
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </div>
