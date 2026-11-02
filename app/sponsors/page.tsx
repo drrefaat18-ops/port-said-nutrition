@@ -12,8 +12,16 @@ export default function SponsorsPage() {
       <PageBar />
       <main className="inner">
         <div className="column">
-          <h1>Sponsorship Packages</h1>
-          <p className="theme">{conference.date}, {conference.venue}</p>
+          <header className="page-head">
+            <p className="eyebrow">{conference.name}</p>
+            <h1>Sponsorship Packages</h1>
+            <div className="flourish" aria-hidden="true"><i /></div>
+            <p className="page-when">
+              <span>{conference.date}</span>
+              <i aria-hidden="true" />
+              <span>{conference.venue}</span>
+            </p>
+          </header>
           <Sponsors />
         </div>
       </main>
