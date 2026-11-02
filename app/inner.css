@@ -36,18 +36,31 @@
 @media (max-width: 47.99rem) { .page-when { flex-direction: column; } .page-when i { display: none; } }
 
 .pagebar {
-  position: fixed; inset: 0 0 auto 0; z-index: 3;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 0.5rem var(--gutter); color: #fbf6ea;
-  background: rgb(7 9 44 / 0.55); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgb(232 199 119 / 0.3);
+  position: fixed; inset: 0 0 auto 0; z-index: 3; padding: 0.75rem var(--gutter) 0; color: #fbf6ea; pointer-events: none;
 }
-.pagebar nav { display: flex; gap: 1.25rem; }
+.pagebar .bar-pill {
+  pointer-events: auto; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
+  max-width: 64rem; margin-inline: auto; padding: 0.3rem;
+  border-radius: 999px; border: 1px solid rgb(232 199 119 / 0.45);
+  background: linear-gradient(180deg, rgb(232 199 119 / 0.12), rgb(232 199 119 / 0) 60%), rgb(7 7 40 / 0.62);
+  -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgb(255 236 190 / 0.25), 0 10px 30px -12px rgb(3 5 30 / 0.7);
+}
+.pagebar nav { display: flex; align-items: center; gap: 0.15rem; }
 .pagebar a {
-  text-decoration: none; font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase;
-  min-height: 2.75rem; display: inline-flex; align-items: center;
+  text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap;
+  color: #fbf6ea; min-height: 2.5rem; padding: 0 0.75rem; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 0.35rem; transition: color 0.25s, background-color 0.25s;
 }
 .pagebar a:hover { color: #e8c777; }
+.pagebar .home { border: 1px solid rgb(232 199 119 / 0.35); padding-left: 0.6rem; }
+.pagebar .home svg { color: #e8c777; }
+.pagebar a.bar-cta {
+  color: #090968; padding: 0 0.95rem;
+  background: linear-gradient(135deg, #f3dc9b, #e8c777 45%, #b8913c);
+  box-shadow: inset 0 1px 0 rgb(255 248 225 / 0.7), 0 4px 14px -6px rgb(170 133 49 / 0.8);
+}
+.pagebar a.bar-cta:hover { color: #090968; }
 
 /* Honour cards: deep navy, a double gold frame, centered gold headings */
 .glass {

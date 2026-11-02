@@ -98,24 +98,27 @@ export default function Boards({ children }: { children: ReactNode }) {
   return (
     <>
       <header className="bar">
-        <p className="counter" aria-label={`Board ${index + 1} of ${count}`}>
-          {String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
-        </p>
-        <nav aria-label="Site">
-          <a href="#day-1">Day 1</a>
-          <a href="#day-2">Day 2</a>
-          <Link href="/sponsors">Sponsors</Link>
-        </nav>
+        <div className="bar-pill">
+          <div className="pager">
+            <button type="button" onClick={() => go.current(-1)} disabled={index === 0} aria-label="Previous board">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <p className="counter" aria-label={`Board ${index + 1} of ${count}`}>
+              <b>{String(index + 1).padStart(2, "0")}</b><span>/ {String(count).padStart(2, "0")}</span>
+              <i aria-hidden="true" style={{ transform: `scaleX(${(index + 1) / count})` }} />
+            </p>
+            <button type="button" onClick={() => go.current(1)} disabled={index === count - 1} aria-label="Next board">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+          </div>
+          <nav aria-label="Site">
+            <a href="#day-1">Day 1</a>
+            <a href="#day-2">Day 2</a>
+            <Link href="/sponsors" className="bar-cta">Sponsors</Link>
+          </nav>
+        </div>
       </header>
       <main className="boards">{children}</main>
-      <div className="steps">
-        <button type="button" onClick={() => go.current(-1)} disabled={index === 0} aria-label="Previous board">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 15l7-7 7 7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
-        <button type="button" onClick={() => go.current(1)} disabled={index === count - 1} aria-label="Next board">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
-      </div>
     </>
   );
 }
