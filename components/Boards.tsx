@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { dayPhase } from "@/lib/day";
 
-const COUNT = 12;
+const COUNT = 13;
 
 // The boards run through one day, and the programme runs with them. Scroll drives --day on the root and the `harbour:progress` event.
 export default function Boards({ children }: { children: ReactNode }) {
