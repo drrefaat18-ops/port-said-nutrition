@@ -180,23 +180,53 @@
 .flourish i { width: 0.45rem; height: 0.45rem; background: currentColor; transform: rotate(45deg); }
 
 /* The programme, one session to a board */
-.plate.session { max-width: 46rem; display: grid; gap: 0.5rem; }
-.plate.session h2 { font-size: clamp(1.2rem, 1.05rem + 0.8vw, 1.7rem); line-height: 1.2; }
 .eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); }
-.program { list-style: none; padding: 0; margin: 0; display: grid; }
-/* Three things to find at a glance: when in its own column, what, then who */
-.program li {
-  display: grid; grid-template-columns: 4.4rem minmax(0, 1fr); column-gap: 0.85rem; align-items: start;
-  padding: 0.45rem 0; border-top: 1px solid rgb(232 199 119 / 0.28); overflow-wrap: anywhere;
+
+/* Day 1: the honour card again, each talk on a compact gold-framed panel, the symposia as gold ribbons */
+.plate.honour.session { max-width: 50rem; gap: 0.4rem; padding: 1.35rem 1.1rem 1.2rem; }
+.plate.honour.session .eyebrow { margin: 0; font-size: 0.72rem; letter-spacing: 0.24em; }
+.plate.honour.session h2.laureate {
+  font-family: var(--font-display); font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem); font-weight: 500; line-height: 1.18;
+  letter-spacing: 0; text-transform: none; color: #e8c777; text-wrap: balance;
 }
-.when { grid-row: span 2; display: grid; font-size: 0.74rem; line-height: 1.25; font-variant-numeric: tabular-nums; color: var(--text); opacity: 0.8; }
-.when b { font-size: 0.95rem; font-weight: 600; color: var(--gold-light); }
-.talk { font-size: 0.95rem; line-height: 1.28; font-weight: 500; }
-.speaker { font-size: 0.8rem; line-height: 1.3; color: var(--gold-light); }
-.breaks li { align-items: center; padding: 0.3rem 0; }
-.breaks .when { grid-row: auto; }
-.breaks .when b { font-size: 0.82rem; }
-.breaks .talk { font-size: 0.82rem; font-weight: 400; }
+.plate.honour.session .flourish { margin-block: 0.15rem 0.3rem; }
+.talk-panels { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; gap: 0.5rem; text-align: left; }
+.talk-panel {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; column-gap: 0.8rem;
+  padding: 0.7rem 0.85rem; border-radius: 0.75rem; border: 1px solid rgb(232 199 119 / 0.4);
+  background: linear-gradient(160deg, rgb(232 199 119 / 0.1), rgb(9 9 56 / 0) 55%), rgb(5 6 34 / 0.35);
+  box-shadow: inset 0 1px 0 rgb(255 236 190 / 0.15);
+}
+.talk-panel .medal { position: static; translate: none; width: 1.9rem; height: 1.9rem; font-size: 0.8rem; margin-top: 0.1rem; }
+.talk-panel .long-time { font-size: 0.74rem; letter-spacing: 0.12em; }
+.talk-panel .long-time b { font-size: 0.88rem; }
+.plate.honour .talk-title { margin: 0.1rem 0 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem); line-height: 1.22; letter-spacing: 0; text-transform: none; color: #fbf6ea; }
+.talk-speaker { margin-top: 0.2rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-light); }
+.ribbons { list-style: none; margin: 0.15rem 0; padding: 0; width: 100%; display: grid; gap: 0.4rem; }
+.ribbon {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.3rem 0.7rem;
+  padding: 0.45rem 0.9rem; border-radius: 999px; border: 1px dashed rgb(232 199 119 / 0.6);
+  background: rgb(232 199 119 / 0.08); font-size: 0.8rem;
+}
+.ribbon i { width: 0.35rem; height: 0.35rem; background: #e8c777; transform: rotate(45deg); }
+.ribbon-time { letter-spacing: 0.1em; font-variant-numeric: tabular-nums; opacity: 0.9; }
+.ribbon-time b { color: var(--gold-light); font-weight: 600; }
+.ribbon-title { font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.74rem; color: #fbf6ea; }
+/* Phones: four talks and two ribbons must fit one screen */
+@media (max-width: 47.99rem) {
+  .plate.honour.session { padding: 1rem 0.8rem 0.9rem; gap: 0.3rem; }
+  .plate.honour.session::before { inset: 0.3rem; }
+  .plate.honour.session h2.laureate { font-size: 1.22rem; }
+  .plate.honour.session .flourish { margin-block: 0.05rem 0.2rem; }
+  .talk-panels { gap: 0.4rem; }
+  .talk-panel { padding: 0.55rem 0.7rem; column-gap: 0.6rem; }
+  .talk-panel .medal { width: 1.6rem; height: 1.6rem; font-size: 0.7rem; }
+  .plate.honour .talk-title { font-size: 0.98rem; }
+  .talk-speaker { font-size: 0.64rem; }
+  .ribbon { padding: 0.35rem 0.7rem; gap: 0.2rem 0.5rem; font-size: 0.72rem; }
+  .ribbon i { display: none; }
+  .ribbon-title { font-size: 0.66rem; }
+}
 
 /* The opening ceremony and the coffee break: a board of their own, set like the honour board */
 .moments { display: grid; justify-items: center; gap: 1rem; width: 100%; }
@@ -258,11 +288,10 @@
   .board { padding-inline: 8vw; }
   .laureates { grid-auto-flow: column; gap: 2.5rem; }
   .laureates .laureate { white-space: nowrap; font-size: 2.25rem; }
-  .program li { grid-template-columns: 4.6rem minmax(0, 1fr) 12rem; column-gap: 1.25rem; }
-  .when { grid-row: auto; }
+  .talk-panels { grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+  .plate.honour.session { padding: 1.6rem 1.5rem 1.4rem; }
   .long-sessions { grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 1.4rem; }
   .long-sessions li { align-content: center; }
   .moments { grid-template-columns: 1.25fr 1fr; align-items: end; max-width: 56rem; margin-inline: auto; }
   .plate.honour.moment, .plate.honour.moment.minor { width: 100%; max-width: none; }
-  .speaker { text-align: right; font-size: 0.86rem; }
 }

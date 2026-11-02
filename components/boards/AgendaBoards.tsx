@@ -63,28 +63,36 @@ function Moments({ moments }: { moments: Slot[] }) {
   );
 }
 
-function Time({ time }: { time: string }) {
-  const [from, to] = time.split(" - ");
-  return <span className="when"><b>{from}</b> {to}</span>;
-}
-
-function Slots({ slots }: { slots: Slot[] }) {
+// Arrival and the company symposia: a slim gold ribbon between the talks.
+function Ribbons({ slots }: { slots: Slot[] }) {
   if (!slots.length) return null;
   return (
-    <ul className="program breaks">
-      {slots.map((s) => (
-        <li key={s.time}><Time time={s.time} /><span className="talk">{s.title}</span></li>
-      ))}
+    <ul className="ribbons">
+      {slots.map((s) => {
+        const [from, to] = s.time.split(" - ");
+        return (
+          <li key={s.time} className="ribbon">
+            <span className="ribbon-time"><b>{from}</b> – {to}</span>
+            <i aria-hidden="true" />
+            <span className="ribbon-title">{s.title}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 }
 
-function Talk({ time, title, speakers }: { time: string; title: string; speakers: string[] }) {
+// One talk on its own gold-framed panel, numbered like the Day 2 sessions.
+function TalkPanel({ n, time, title, speakers }: { n: number; time: string; title: string; speakers: string[] }) {
+  const [from, to] = time.split(" - ");
   return (
-    <li>
-      <Time time={time} />
-      <span className="talk">{title}</span>
-      <span className="speaker">{speakers.join(", ")}</span>
+    <li className="talk-panel">
+      <span className="medal" aria-hidden="true">{String(n).padStart(2, "0")}</span>
+      <div>
+        <p className="long-time"><b>{from}</b> – {to}</p>
+        <h3 className="talk-title">{title}</h3>
+        {speakers.length > 0 && <p className="talk-speaker">{speakers.join(", ")}</p>}
+      </div>
     </li>
   );
 }
@@ -94,14 +102,15 @@ export default function AgendaBoards() {
     <>
       {stops.map(({ session: s, after }, i) => (
         <section className="board" id={i ? `session-${s.n}` : "day-1"} aria-labelledby={`s${s.n}`} key={s.n}>
-          <div className="plate session">
-            {i === 0 && <Slots slots={opening} />}
+          <div className="plate honour session">
+            {i === 0 && <Ribbons slots={opening} />}
             <p className="eyebrow">{day1.title} · Session {s.n}</p>
-            <h2 id={`s${s.n}`}>{s.title}</h2>
-            <ul className="program">
-              {s.talks.map((t) => <Talk key={t.time} {...t} />)}
-            </ul>
-            <Slots slots={after} />
+            <h2 id={`s${s.n}`} className="laureate">{s.title}</h2>
+            <div className="flourish" aria-hidden="true"><i /></div>
+            <ol className="talk-panels">
+              {s.talks.map((t, k) => <TalkPanel key={t.time} n={k + 1} {...t} />)}
+            </ol>
+            <Ribbons slots={after} />
           </div>
         </section>
       )).flatMap((board, i) => (stops[i].moments.length ? [board, <Moments key={`m${i}`} moments={stops[i].moments} />] : [board]))}
