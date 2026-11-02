@@ -36,3 +36,6 @@ Day 2 is unchanged.
 - 05:05 - 05:20 PM Road Map to Childhood & Adolescent Obesity
 - 05:20 - 05:35 PM The Last Update on Polycystic Ovary Syndrome
 - 05:35 - 05:50 PM Perimenopausal Nutrition Challenges
+
+## 2026-11-02: Prof. Shaimaa Aweila removed
+Day 1, "Nutrition in Autoimmune Diseases" (02:15 - 02:30 PM) stays on the programme with no speaker shown.

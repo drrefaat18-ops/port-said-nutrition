@@ -57,7 +57,7 @@
         { "kind": "slot", "time": "12:35 - 01:15 PM", "title": "Opening Ceremony", "symposium": false },
         { "kind": "slot", "time": "01:15 - 02:15 PM", "title": "Coffee Break", "symposium": false },
         { "kind": "session", "n": 4, "title": "Immunonutrition", "talks": [
-          { "time": "02:15 - 02:30 PM", "title": "Nutrition in Autoimmune Diseases", "speakers": ["Prof. Shaimaa Aweila"] },
+          { "time": "02:15 - 02:30 PM", "title": "Nutrition in Autoimmune Diseases", "speakers": [] },
           { "time": "02:30 - 02:45 PM", "title": "Multiple Sclerosis and Diet", "speakers": ["Prof. Dina Zamzam"] },
           { "time": "02:45 - 03:00 PM", "title": "Protect and Nourish: The Essentials of the First 1,000 Days", "speakers": ["Prof. Osama Arafa"] }
         ] },
