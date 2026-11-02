@@ -1,16 +1,13 @@
 import { conference, team } from "@/content";
 import { mailHref } from "@/lib/mail";
 
-// M Square and the syndicate on one strip, then the two people to call.
+// M Square's logo, then the two people to call. The syndicate's logo sits on the first board.
 export default function Organizers() {
   return (
     <div className="org">
       <div className="org-logos">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logos/m-square.svg" alt="M Square" width={220} height={66} />
-        <i aria-hidden="true" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logos/syndicate.png" alt="Port Said Medical Syndicate" width={88} height={88} />
       </div>
       <ul className="people">
         {team.map((p) => (
