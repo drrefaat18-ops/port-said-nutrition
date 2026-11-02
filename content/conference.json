@@ -36,48 +36,48 @@
     {
       "title": "Day 1",
       "items": [
-        { "kind": "slot", "time": "09:00 - 09:30 AM", "title": "Arrival and Registration", "symposium": false },
+        { "kind": "slot", "time": "09:00 - 10:00 AM", "title": "Arrival and Registration", "symposium": false },
         { "kind": "session", "n": 1, "title": "The Critical 1,000 Days: Nutrition, Immunity, and Neurodevelopment", "talks": [
-          { "time": "09:30 - 09:45 AM", "title": "The Science of Eating for Two: Evidence-Based Gestational Nutrition", "speakers": ["Prof. Shaimaa Faiad"] },
-          { "time": "09:45 - 10:00 AM", "title": "Optimizing the Extrauterine Growth: Evidence-Based Preterm Nutrition", "speakers": ["Prof. Osama Hussein"] },
-          { "time": "10:00 - 10:15 AM", "title": "The Immunological Window: Breastfeeding Dynamics in the First 1,000 Days", "speakers": ["Prof. Gihan Fouad"] },
-          { "time": "10:15 - 10:30 AM", "title": "Closing the Gap: Feeding the First 1,000 Days", "speakers": ["Prof. Sanaa Youssef"] }
+          { "time": "10:00 - 10:15 AM", "title": "The Science of Eating for Two: Evidence-Based Gestational Nutrition", "speakers": ["Prof. Shaimaa Faiad"] },
+          { "time": "10:15 - 10:30 AM", "title": "Optimizing the Extrauterine Growth: Evidence-Based Preterm Nutrition", "speakers": ["Prof. Osama Hussein"] },
+          { "time": "10:30 - 10:45 AM", "title": "The Immunological Window: Breastfeeding Dynamics in the First 1,000 Days", "speakers": ["Prof. Gihan Fouad"] },
+          { "time": "10:45 - 11:00 AM", "title": "Closing the Gap: Feeding the First 1,000 Days", "speakers": ["Prof. Sanaa Youssef"] }
         ] },
-        { "kind": "slot", "time": "10:30 - 10:40 AM", "title": "Company Symposium 1", "symposium": true },
+        { "kind": "slot", "time": "11:00 - 11:10 AM", "title": "Company Symposium 1", "symposium": true },
         { "kind": "session", "n": 2, "title": "A New Era in Nutrition", "talks": [
-          { "time": "10:40 - 10:55 AM", "title": "New Era in the Biotic Family", "speakers": ["Prof. Enas Raafat"] },
-          { "time": "10:55 - 11:10 AM", "title": "AI Meets Nutrition: The Future of Clinical Practice", "speakers": ["Dr. May Mostafa"] },
-          { "time": "11:10 - 11:25 AM", "title": "Nutrigenomics", "speakers": ["Prof. Peter Safwat"] }
+          { "time": "11:10 - 11:25 AM", "title": "New Era in the Biotic Family", "speakers": ["Prof. Enas Raafat"] },
+          { "time": "11:25 - 11:40 AM", "title": "AI Meets Nutrition: The Future of Clinical Practice", "speakers": ["Dr. May Mostafa"] },
+          { "time": "11:40 - 11:55 AM", "title": "Nutrigenomics", "speakers": ["Prof. Peter Safwat"] }
         ] },
         { "kind": "session", "n": 3, "title": "Nutrition in the ICU", "talks": [
-          { "time": "11:25 - 11:40 AM", "title": "Multidisciplinary Case-Based Approach to Nutrition in Critical Care: Real Case, Real Decisions", "speakers": ["Prof. Marwa Sabry", "Dr. Hanan Mostafa"] },
-          { "time": "11:40 - 11:55 AM", "title": "Nutrition in the Critically Ill Child", "speakers": ["Dr. Ahmed Said Amer"] }
+          { "time": "11:55 - 12:10 PM", "title": "Multidisciplinary Case-Based Approach to Nutrition in Critical Care: Real Case, Real Decisions", "speakers": ["Prof. Marwa Sabry", "Dr. Hanan Mostafa"] },
+          { "time": "12:10 - 12:25 PM", "title": "Nutrition in the Critically Ill Child", "speakers": ["Dr. Ahmed Said Amer"] }
         ] },
-        { "kind": "slot", "time": "11:55 - 12:05 PM", "title": "Company Symposium 2", "symposium": true },
-        { "kind": "slot", "time": "12:05 - 12:45 PM", "title": "Opening Ceremony", "symposium": false },
-        { "kind": "slot", "time": "12:45 - 01:45 PM", "title": "Coffee Break", "symposium": false },
+        { "kind": "slot", "time": "12:25 - 12:35 PM", "title": "Company Symposium 2", "symposium": true },
+        { "kind": "slot", "time": "12:35 - 01:15 PM", "title": "Opening Ceremony", "symposium": false },
+        { "kind": "slot", "time": "01:15 - 02:15 PM", "title": "Coffee Break", "symposium": false },
         { "kind": "session", "n": 4, "title": "Immunonutrition", "talks": [
-          { "time": "01:45 - 02:00 PM", "title": "Nutrition in Autoimmune Diseases", "speakers": ["Prof. Shaimaa Aweila"] },
-          { "time": "02:00 - 02:15 PM", "title": "Multiple Sclerosis and Diet", "speakers": ["Prof. Dina Zamzam"] },
-          { "time": "02:15 - 02:30 PM", "title": "Protect and Nourish: The Essentials of the First 1,000 Days", "speakers": ["Prof. Osama Arafa"] }
+          { "time": "02:15 - 02:30 PM", "title": "Nutrition in Autoimmune Diseases", "speakers": ["Prof. Shaimaa Aweila"] },
+          { "time": "02:30 - 02:45 PM", "title": "Multiple Sclerosis and Diet", "speakers": ["Prof. Dina Zamzam"] },
+          { "time": "02:45 - 03:00 PM", "title": "Protect and Nourish: The Essentials of the First 1,000 Days", "speakers": ["Prof. Osama Arafa"] }
         ] },
-        { "kind": "slot", "time": "02:30 - 02:40 PM", "title": "Company Symposium 3", "symposium": true },
+        { "kind": "slot", "time": "03:00 - 03:10 PM", "title": "Company Symposium 3", "symposium": true },
         { "kind": "session", "n": 5, "title": "Obesity & Metabolic Diseases", "talks": [
-          { "time": "02:40 - 02:55 PM", "title": "Obesity as a Chronic Disease: A Multidisciplinary Approach", "speakers": ["Prof. Asmaa Eid"] },
-          { "time": "02:55 - 03:10 PM", "title": "Obesity Hypoventilation Syndrome", "speakers": ["Prof. Ahmed Beshir"] },
-          { "time": "03:10 - 03:25 PM", "title": "Cardiometabolic Disease and the Role of GLP-1 Agonists", "speakers": ["Dr. Mohamed Emam"] },
-          { "time": "03:25 - 03:40 PM", "title": "Nutrition in CKD Patients", "speakers": ["Dr. Mohamed Elshemy"] }
+          { "time": "03:10 - 03:25 PM", "title": "Obesity as a Chronic Disease: A Multidisciplinary Approach", "speakers": ["Prof. Asmaa Eid"] },
+          { "time": "03:25 - 03:40 PM", "title": "Obesity Hypoventilation Syndrome", "speakers": ["Prof. Ahmed Beshir"] },
+          { "time": "03:40 - 03:55 PM", "title": "Cardiometabolic Disease and the Role of GLP-1 Agonists", "speakers": ["Dr. Mohamed Emam"] },
+          { "time": "03:55 - 04:10 PM", "title": "Nutrition in CKD Patients", "speakers": ["Dr. Mohamed Elshemy"] }
         ] },
-        { "kind": "slot", "time": "03:40 - 03:50 PM", "title": "Company Symposium 4", "symposium": true },
+        { "kind": "slot", "time": "04:10 - 04:20 PM", "title": "Company Symposium 4", "symposium": true },
         { "kind": "session", "n": 6, "title": "Endocrine Nutrition", "talks": [
-          { "time": "03:50 - 04:05 PM", "title": "Nutritional Management of New Types of Diabetes", "speakers": ["Dr. Amr Omar"] },
-          { "time": "04:05 - 04:20 PM", "title": "From Plates to Glands: Unravelling Nutritional vs Endocrinal Hypoglycemia in Pediatrics", "speakers": ["Dr. Dina Elbayaa"] },
-          { "time": "04:20 - 04:35 PM", "title": "Chicken or the Egg? Does High TSH Cause Obesity, or Does Obesity Raise TSH?", "speakers": ["Dr. Sara Amr"] }
+          { "time": "04:20 - 04:35 PM", "title": "Nutritional Management of New Types of Diabetes", "speakers": ["Dr. Amr Omar"] },
+          { "time": "04:35 - 04:50 PM", "title": "From Plates to Glands: Unravelling Nutritional vs Endocrinal Hypoglycemia in Pediatrics", "speakers": ["Dr. Dina Elbayaa"] },
+          { "time": "04:50 - 05:05 PM", "title": "Chicken or the Egg? Does High TSH Cause Obesity, or Does Obesity Raise TSH?", "speakers": ["Dr. Sara Amr"] }
         ] },
         { "kind": "session", "n": 7, "title": "From Adolescence to Menopause: The Changing Landscape of Obesity & Nutrition", "talks": [
-          { "time": "04:35 - 04:50 PM", "title": "Road Map to Childhood & Adolescent Obesity", "speakers": ["Prof. Yassmin Gamal"] },
-          { "time": "04:50 - 05:05 PM", "title": "The Last Update on Polycystic Ovary Syndrome", "speakers": ["Dr. Mai Montaser"] },
-          { "time": "05:05 - 05:20 PM", "title": "Perimenopausal Nutrition Challenges", "speakers": ["Prof. Heba Omar"] }
+          { "time": "05:05 - 05:20 PM", "title": "Road Map to Childhood & Adolescent Obesity", "speakers": ["Prof. Yassmin Gamal"] },
+          { "time": "05:20 - 05:35 PM", "title": "The Last Update on Polycystic Ovary Syndrome", "speakers": ["Dr. Mai Montaser"] },
+          { "time": "05:35 - 05:50 PM", "title": "Perimenopausal Nutrition Challenges", "speakers": ["Prof. Heba Omar"] }
         ] }
       ]
     },
