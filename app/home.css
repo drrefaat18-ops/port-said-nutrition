@@ -56,7 +56,6 @@
 .plate h3 { font-size: var(--step--1); font-family: var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: var(--gold-light); margin-top: var(--space-1); }
 .plate .big { font-size: var(--step-3); display: grid; gap: 0.1em; }
 .plate .theme { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: var(--gold-light); }
-#b1 { position: relative; }
 
 /* The opening board: open sky, the three logos at one size, the conference in gold */
 .board.hero {
